@@ -1,0 +1,17 @@
+{
+  "index": "What is Token Bound?",
+  "quick": "Quick Start",
+  "use": "Use Cases",
+  "faq": "FAQs",
+  "---": {
+    "type": "separator"
+  },
+  "sdk": "Developer SDK",
+  "contracts": "Contracts",
+  "eip": {
+    "title": "ERC-6551",
+    "type": "page",
+    "href": "https://example.com/contact",
+    "newWindow": true
+  }
+}
