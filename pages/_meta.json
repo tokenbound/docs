@@ -6,7 +6,7 @@
   "---": {
     "type": "separator"
   },
-  "sdk": "Developer SDK",
+  "sdk": "Registry SDK",
   "contracts": "Contracts",
   "eip": {
     "title": "ERC-6551",

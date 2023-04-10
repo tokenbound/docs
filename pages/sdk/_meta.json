@@ -1,6 +1,10 @@
 {
   "installation": "Installation",
-  "accountAddress": "accountAddress",
-  "createAccount": "createAccount",
-  "transferToken": "transferToken"
+  "getAccount": "getAccount",
+  "createaccount": "createAccount",
+  "encodeexecutecall": "encodeExecuteCall",
+  "---": {
+    "type": "separator"
+  },
+  "customimplementation": "Custom Implementations"
 }
