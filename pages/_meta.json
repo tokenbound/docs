@@ -1,17 +1,17 @@
 {
-  "index": "What is Token Bound?",
+  "index": "Introduction",
   "quick": "Quick Start",
   "use": "Use Cases",
   "faq": "FAQs",
   "---": {
     "type": "separator"
   },
-  "sdk": "Registry SDK",
+  "sdk": "SDK",
   "contracts": "Contracts",
   "eip": {
     "title": "ERC-6551",
     "type": "page",
-    "href": "https://example.com/contact",
+    "href": "https://eips.ethereum.org/EIPS/eip-6551",
     "newWindow": true
   }
 }

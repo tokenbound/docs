@@ -1,10 +1,14 @@
 {
   "installation": "Installation",
+  "----": {
+    "type": "separator"
+  },
   "getAccount": "getAccount",
-  "createaccount": "createAccount",
-  "encodeexecutecall": "encodeExecuteCall",
+  "createAccount": "createAccount",
+  "prepareExecuteCall": "prepareExecuteCall",
+  "executeCall": "executeCall",
   "---": {
     "type": "separator"
   },
-  "customimplementation": "Custom Implementations"
+  "customAccounts": "Custom Implementations"
 }
