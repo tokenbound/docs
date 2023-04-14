@@ -2,11 +2,19 @@ import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 
 const config: DocsThemeConfig = {
+  useNextSeoProps() {
+    return {
+      titleTemplate: "%s - Tokenbound Documentation",
+    };
+  },
   head: (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta property="og:title" content="Token Bound" />
-      <meta property="og:description" content="ERC-6551 Token Bound" />
+      <meta
+        property="og:description"
+        content="Open-source tooling for ERC-6551 token bound accounts"
+      />
     </>
   ),
   logo: <img src="/tokenbound-logo.svg" />,
