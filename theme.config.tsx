@@ -13,7 +13,7 @@ const config: DocsThemeConfig = {
       <meta property="og:title" content="Token Bound" />
       <meta
         property="og:description"
-        content="Open-source tooling for ERC-6551 token bound accounts"
+        content="Open-source tooling for ERC-6551 Token Bound Accounts"
       />
     </>
   ),
