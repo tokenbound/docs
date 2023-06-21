@@ -4,7 +4,17 @@ See [docs.tokenbound.org](https://docs.tokenbound.org)
 
 ## Getting Started
 
-First, run the development server:
+First, Install the dependencies:
+
+```bash
+npm install
+# or
+yarn
+# or
+pnpm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
