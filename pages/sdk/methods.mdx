@@ -1,0 +1,121 @@
+## Methods
+
+### TokenboundClient
+
+```ts
+const tokenboundClient = new TokenboundClient({ signer, chainId: 1 });
+```
+
+| Parameter | Description      | Type   |
+| --------- | ---------------- | ------ |
+| signer    | ...              | ...    |
+| chainId   | network chain ID | number |
+
+---
+
+### getAccount
+
+**Returns** the tokenbound account address for a given token contract and token ID.
+
+```typescript
+async function getTokenBoundAccountAddress() {
+  const tokenBoundAccount = await tokenboundClient.getAccount({
+    tokenContract: "<token_contract_address>",
+    tokenId: "<token_id>",
+  });
+
+  console.log(tokenBoundAccount); //0x1a2...3b4cd
+}
+```
+
+| Parameter     | Description                        | Type   |
+| ------------- | ---------------------------------- | ------ |
+| tokenContract | The address of the token contract. | string |
+| tokenId       | The token ID.                      | string |
+
+---
+
+### prepareCreateAccount
+
+**Returns** the prepared transaction to create a Tokenbound account for a given token contract and token ID.
+
+```typescript
+const preparedAccount = await tokenboundClient.prepareCreateAccount({
+  tokenContract: "<token_contract_address>",
+  tokenId: "<token_id>",
+});
+
+console.log(preparedAccount); //0x1a2...3b4cd
+```
+
+| Parameter     | Description                        | Type   |
+| ------------- | ---------------------------------- | ------ |
+| tokenContract | The address of the token contract. | string |
+| tokenId       | The token ID.                      | string |
+
+---
+
+### createAccount
+
+**Returns** the transaction hash of the transaction that created the tokenbound account for a given token contract and token ID.
+
+```typescript
+const account = await tokenboundClient.createAccount({
+  tokenContract: "<token_contract_address>",
+  tokenId: "<token_id>",
+});
+
+console.log(createAccount); //0x1a2...3b4cd
+```
+
+| Parameter     | Description                        | Type   |
+| ------------- | ---------------------------------- | ------ |
+| tokenContract | The address of the token contract. | string |
+| tokenId       | The token ID.                      | string |
+
+---
+
+### prepareExecuteCall
+
+**Returns** A Promise with prepared transaction to execute a call on a Tokenbound account. Can be sent via `sendTransaction` on an Ethers signer or via WalletClient.
+
+```typescript
+const preparedCall = await tokenboundClient.prepareExecuteCall({
+  account: "<account_address>",
+  to: "<recipient_address>",
+  value: "<wei_value>",
+  data: "<data>",
+});
+
+console.log(preparedCall); //...
+```
+
+| Parameter | Description                     | Type   |
+| --------- | ------------------------------- | ------ |
+| account   | The Tokenbound account address. | string |
+| to        | The recipient address.          | string |
+| value     | The value to send, in wei.      | bigint |
+| data      | The data to send.               | string |
+
+---
+
+### executeCall
+
+**Returns** a hash of the transaction that executed a call using a Tokenbound account.
+
+```ts
+const executedCall = await tokenboundClient.executeCall({
+  account: "<account_address>",
+  to: "<recipient_address>",
+  value: "<wei_value>",
+  data: "<data>",
+});
+
+console.log(executedCall); //...
+```
+
+| Parameter   | Description                     | Type   |
+| ----------- | ------------------------------- | ------ |
+| **account** | The Tokenbound account address. | string |
+| **to**      | The recipient address.          | string |
+| **value**   | The value to send, in wei.      | bigint |

@@ -1,12 +1,6 @@
 {
   "installation": "Installation",
-  "----": {
-    "type": "separator"
-  },
-  "getAccount": "getAccount",
-  "createAccount": "createAccount",
-  "prepareExecuteCall": "prepareExecuteCall",
-  "executeCall": "executeCall",
+  "methods": "Methods",
   "---": {
     "type": "separator"
   },
