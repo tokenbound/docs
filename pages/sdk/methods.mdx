@@ -2,14 +2,40 @@
 
 ### TokenboundClient
 
+The TokenboundClient is instantiated with an object containing at most two parameters:
+`chainId` (mandatory)
+`signer` (optional)
+Use either an Ethers `signer` OR viem `walletClient`, for transactions that require a user to sign.
+
 ```ts
 const tokenboundClient = new TokenboundClient({ signer, chainId: 1 });
 ```
 
-| Parameter | Description      | Type   |
-| --------- | ---------------- | ------ |
-| signer    | ...              | ...    |
-| chainId   | network chain ID | number |
+**OR**
+
+```ts
+const tokenboundClient = new TokenboundClient({ walletClient, chainId: 1 });
+```
+
+Use the TokenboundClient to interact with the Tokenbound contracts and Tokenbound accounts:
+
+```ts
+const tokenboundClient = new TokenboundClient({ signer, chainId: 1 });
+
+async () => {
+  const tokenBoundAccount = await tokenboundClient.getAccount({
+    tokenContract: "<token_contract_address>",
+    tokenId: "<token_id>",
+  });
+
+  console.log(tokenBoundAccount); //0x1a2...3b4cd
+};
+```
+
+| Parameter |           |
+| --------- | --------- |
+| signer    | optional  |
+| chainId   | mandatory |
 
 ---
 
@@ -18,14 +44,12 @@ const tokenboundClient = new TokenboundClient({ signer, chainId: 1 });
 **Returns** the tokenbound account address for a given token contract and token ID.
 
 ```typescript
-async function getTokenBoundAccountAddress() {
-  const tokenBoundAccount = await tokenboundClient.getAccount({
-    tokenContract: "<token_contract_address>",
-    tokenId: "<token_id>",
-  });
+const tokenBoundAccount = await tokenboundClient.getAccount({
+  tokenContract: "<token_contract_address>",
+  tokenId: "<token_id>",
+});
 
-  console.log(tokenBoundAccount); //0x1a2...3b4cd
-}
+console.log(tokenBoundAccount); //0x1a2...3b4cd
 ```
 
 | Parameter     | Description                        | Type   |
