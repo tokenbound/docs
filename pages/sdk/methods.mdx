@@ -17,25 +17,23 @@ const tokenboundClient = new TokenboundClient({ signer, chainId: 1 });
 const tokenboundClient = new TokenboundClient({ walletClient, chainId: 1 });
 ```
 
-Use the TokenboundClient to interact with the Tokenbound contracts and Tokenbound accounts:
-
-```ts
-const tokenboundClient = new TokenboundClient({ signer, chainId: 1 });
-
-async () => {
-  const tokenBoundAccount = await tokenboundClient.getAccount({
-    tokenContract: "<token_contract_address>",
-    tokenId: "<token_id>",
-  });
-
-  console.log(tokenBoundAccount); //0x1a2...3b4cd
-};
-```
-
 | Parameter |           |
 | --------- | --------- |
 | signer    | optional  |
 | chainId   | mandatory |
+
+Then use the TokenboundClient to interact with the Tokenbound contracts and Tokenbound accounts:
+
+```ts
+const tokenboundClient = new TokenboundClient({ signer, chainId: 1 });
+
+const tokenBoundAccount = tokenboundClient.getAccount({
+  tokenContract: "<token_contract_address>",
+  tokenId: "<token_id>",
+});
+
+console.log(tokenBoundAccount); //0x1a2...3b4cd
+```
 
 ---
 
@@ -44,7 +42,7 @@ async () => {
 **Returns** the tokenbound account address for a given token contract and token ID.
 
 ```typescript
-const tokenBoundAccount = await tokenboundClient.getAccount({
+const tokenBoundAccount = tokenboundClient.getAccount({
   tokenContract: "<token_contract_address>",
   tokenId: "<token_id>",
 });
