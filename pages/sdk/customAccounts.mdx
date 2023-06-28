@@ -4,6 +4,21 @@ import { Callout } from "nextra-theme-docs";
 
 Support for custom ERC-6551 account implementations is coming soon.
 
+Custom account implementations are now supported in the SDK.
+
+The SDK supports custom 6551 implementations. If you've deployed your own implementation,
+you can pass the custom `implementationAddress` and `registryAddress` when calling `getAccount`,
+`prepareCreateAccount`, `createAccount`, or `computeAccount`:
+
+```javascript
+const result = await tokenboundClient.getAccount({
+  tokenContract: "<token_contract_address>",
+  tokenId: "<token_id>",
+  implementationAddress: "<custom_implementation_address>",
+  registryAddress: "<custom_registry_address>",
+});
+```
+
 ---
 
 <Callout emoji="✍🏽">
