@@ -90,9 +90,7 @@ git clone git@github.com:githubUser/iframe.git
 
 https://dashboard.alchemy.com/
 
-### Create an Alchemy account and create an API key.
-
-Update your environment variables with your Alchemy credentials for `NEXT_PUBLIC_ALCHEMY_KEY` and `NEXT_PUBLIC_PROVIDER_ENDPOINT`.
+Update your environment variables with your Alchemy
 
 ```
 NEXT_PUBLIC_ALCHEMY_KEY="<alchemy_key>"
@@ -108,6 +106,11 @@ NEXT_PUBLIC_NXYZ_API_KEY="<nxyz_api_key>"
 ```
 
 ### Use in your custom api endpoint to fetch your NFT's media
+
+The application expects the endpoint to be: `string | string[]`, where the string is a url link to your NFT's assets. It should
+dynamically have a route for each tokenId.
+
+For example the `NEXT_PUBLIC_NFT_ENDPOINT` env variable is `https://nft-api.com/nft`. The application will then take the tokenId from the URL and make a fetch to that endpoint: `https://nft-api.com/nft/<tokenId>`.
 
 ```
 ...
