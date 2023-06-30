@@ -1,0 +1,130 @@
+import { Callout } from "nextra-theme-docs";
+import { Steps } from "nextra-theme-docs";
+import React from "react";
+
+import { useState } from "react";
+
+export function Iframe({ src }) {
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: "75%",
+        paddingBottom: "80%",
+      }}
+    >
+      <iframe
+        src={src}
+        title="Square Iframe"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          border: "none",
+        }}
+      ></iframe>
+    </div>
+  );
+}
+
+# Iframe Starter Kit
+
+By using an `animation URL` developers may embed a web app as the media for NFT on OpenSea, and some other platforms. This allows users to view detailed information about the tokenbound account (TBA) of NFTs directly within the marketplace interface.
+
+This basic iframe implementation lets users explore their NFT's tokenbound accounts and view information such as:
+
+- Contents of the NFT's tokenbound account: ERC-721, ERC-1155, ether and ERC-20 tokens
+
+- Whether or not any ERC-721, or ERC-1155 tokens have global or token level approvals. This information provides context for users who are looking to buy an NFT and the contents within it's TBA, since tokens with pending approvals have the potential be transferred before the transaction for the parent NFT is finalized.
+- Whether the status of the TBA is `locked` or `unlocked`. A `locked` state allows users to confidently purchase an NFT, knowing that none of the contents of the TBA will be transferred for the specified time period.
+
+<Callout emoji="✍🏽">
+  **Tokenbound** currently provides two ways you can easily integrate iframes
+  into your project `URL` and `Custom`.
+</Callout>
+<br />
+<Iframe
+  src={
+    "https://iframe-tokenbound.vercel.app/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36/1"
+  }
+/>
+# URL Implementation
+
+The `URL` method is recommended for NFT projects using static images for their artwork, and/or existing projects and wish to show their NFT's Tokenbound account.
+This method requires updating the `animation_url` of your NFT's metadata to match this pattern:
+
+```json
+{
+  "animation_url": "https://iframe-tokenbound.vercel.app/<contractAddress>/<tokenId>"
+}
+```
+
+`contractAddress`: the contract address of the NFT collection you wish to display <br/>
+`tokenId`: the token ID of the individual NFT to be rendered in the iframe
+
+For example, using `token ID 1` from the `Sapienz` collection: [https://iframe-tokenbound.vercel.app/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36/1](https://iframe-tokenbound.vercel.app/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36/1)
+
+<Callout emoji="✍🏽">
+  The `URL` iframe method currently only supports Ethereum mainnet. We are
+  working to integrate this with Sepolia, Goerli and other EVM compatible
+  chains.
+</Callout>
+
+This iframe implementation relies on Alchemy's indexer to render the NFT's media. If your project uses a custom API to render the NFT's media, us the custom implementation below.
+
+# Custom Implementation
+
+<Steps>
+
+### Fork and clone the [iframe repo](https://github.com/tokenbound/iframe)
+
+```bash copy
+git clone git@github.com:githubUser/iframe.git
+```
+
+### Create a `.env.local` file and copy the variables from `.env.example`
+
+### Create an Alchemy account and create an API key.
+
+https://dashboard.alchemy.com/
+
+Update your environment variables with your Alchemy
+
+```
+NEXT_PUBLIC_ALCHEMY_KEY="<alchemy_key>"
+NEXT_PUBLIC_PROVIDER_ENDPOINT="https://..."
+```
+
+### Create an account and API key for [n.xyz](https://n.xyz/). This is for checking token approvals.
+
+Update `NEXT_PUBLIC_NXYZ_API_KEY` with your n.xyz credentials. Make sure you enable cors for `n.xyz` for the api key to your domain or `*` for all domains.
+
+```
+NEXT_PUBLIC_NXYZ_API_KEY="<nxyz_api_key>"
+```
+
+### Use in your custom api endpoint to fetch your NFT's media
+
+The application expects the endpoint to be: `string | string[]`, where the string is a url link to your NFT's assets. It should
+dynamically have a route for each tokenId.
+
+For example the `NEXT_PUBLIC_NFT_ENDPOINT` env variable is `https://nft-api.com/nft`. The application will then take the tokenId from the URL and make a fetch to that endpoint: `https://nft-api.com/nft/<tokenId>`.
+
+```
+...
+NEXT_PUBLIC_NFT_ENDPOINT="..."
+```
+
+### Host your application
+
+Host your application on a service provider of your choice and set your metadata server with that host.
+
+```json
+{
+  "animation_url": "https://iframe-tokenbound.vercel.app/<contractAddress>/<tokenId>"
+}
+```
+
+</Steps>
