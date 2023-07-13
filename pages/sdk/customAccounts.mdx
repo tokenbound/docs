@@ -2,7 +2,42 @@ import { Callout } from "nextra-theme-docs";
 
 # Custom Accounts
 
-Support for custom ERC-6551 account implementations is coming soon.
+Custom 6551 account implementations are now supported in the SDK.
+
+If you've deployed your own implementation, you can optionally pass custom configuration parameters when instantiating your TokenboundClient:
+
+```javascript
+import { TokenboundClient } from "@tokenbound/sdk";
+
+const tokenboundClient = new TokenboundClient({
+    signer: <signer>,
+    chainId: <chainId>,
+    implementationAddress: "<custom_implementation_address>",
+})
+
+// Custom implementation AND custom registry (uncommon for most implementations)
+const tokenboundClientWithCustomRegistry = new TokenboundClient({
+    signer: <signer>,
+    chainId: <chainId>,
+    implementationAddress: "<custom_implementation_address>",
+    registryAddress: "<custom_registry_address>",
+})
+```
+
+If, for any reason, you need to override the custom implementation on the client instance, you can:
+
+1. Create another instance of TokenboundClient OR
+2. Override `implementationAddress` or `registryAddress` directly when calling `getAccount`,
+   `prepareCreateAccount`, `createAccount`, or `computeAccount`:
+
+```javascript
+const result = tokenboundClient.getAccount({
+  tokenContract: "<token_contract_address>",
+  tokenId: "<token_id>",
+  implementationAddress: "<custom_implementation_address>",
+  registryAddress: "<custom_registry_address>",
+});
+```
 
 ---
 
