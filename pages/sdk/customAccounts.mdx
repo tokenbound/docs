@@ -10,18 +10,18 @@ If you've deployed your own implementation, you can optionally pass custom confi
 import { TokenboundClient } from "@tokenbound/sdk";
 
 const tokenboundClient = new TokenboundClient({
-    signer: <signer>,
-    chainId: <chainId>,
-    implementationAddress: "<custom_implementation_address>",
-})
+  signer: "<signer>",
+  chainId: "<chainId>",
+  implementationAddress: "<custom_implementation_address>",
+});
 
 // Custom implementation AND custom registry (uncommon for most implementations)
 const tokenboundClientWithCustomRegistry = new TokenboundClient({
-    signer: <signer>,
-    chainId: <chainId>,
-    implementationAddress: "<custom_implementation_address>",
-    registryAddress: "<custom_registry_address>",
-})
+  signer: "<signer>",
+  chainId: "<chainId>",
+  implementationAddress: "<custom_implementation_address>",
+  registryAddress: "<custom_registry_address>",
+});
 ```
 
 If, for any reason, you need to override the custom implementation on the client instance, you can:
