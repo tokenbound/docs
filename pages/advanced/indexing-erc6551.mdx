@@ -1,55 +1,414 @@
-import { Callout } from "nextra-theme-docs";
+import { Tab, Tabs } from "nextra-theme-docs";
 
-# Frequently Asked Questions
+# Indexing ERC6551
 
-### What is a Token Bound Account (TBA)?
+If you need to index ERC6551 on-chain data, you can use [Airstack](https://docs.airstack.xyz) to do so.
 
-A "Token Bound Account" is a smart contract account, controlled by an NFT. It can do everything a normal wallet can do and is compatible with every NFT you already own.
+## Get Started
 
-### Why now for ERC-6551 and Token Bound Accounts?
+Airstack provides a GraphQL API solution to index [ERC-6551](https://eips.ethereum.org/EIPS/eip-6551) accounts on both Ethereum and Polygon.
 
-Hundreds of thousands of NFT projects have launched in the last few years, from CC0 projects to multi-billion dollar media/entertainment companies. NFTs have reached mainstream appeal over the last 2 years. However, ERC-721, the token standard that coined the term NFTs, has remained roughly the same since it was created 6 years ago. The standard didn’t/couldn’t anticipate all the potential use cases when it was conceived in 2017.
+You can try using Airstack now to index [ERC-6551](https://eips.ethereum.org/EIPS/eip-6551) accounts by using the [Airstack Explorer](https://app.airstack.xyz/explorer).
 
-One such use case is ownership from a token level. NFTs and most tokens are assets that are owned and controlled by a wallet, typically that is Metamask, Rainbow, Coinbase, Ledger, etc. but as NFTs have grown into full blown communities, the demand for utility and general usefulness has reached new heights. Projects with enough capital often organize IRL social gatherings that require huge amounts of capital and resources. Projects with less capital pursue on-chain game mechanics such as staking, farming, airdrops, voting, and purchasing.
+For production, the Airstack GraphQL endpoint is available at https://api.airstack.xyz/graphql.
 
-However most of these mechanics are often difficult to build and as a result each project has their own implementation that essentially does the same thing as the other but has more potential security vulnerabilities. The concept of ERC-6551 and Token Bound Accounts allow NFTs to have its own ethereum identity in the form of a smart contract wallet. ERC-6551 will allow for all NFT projects to add in important utilities to their tokens without heavy capital investment and effectively leveling up the entire NFT asset class together.
+### Airstack SDK
 
-### I’ve seen other projects where NFTs can own assets. How is ERC-6551 different?
+Airstack provides two official SDKs to help you index [ERC-6551](https://eips.ethereum.org/EIPS/eip-6551) accounts in your application:
 
-ERC-6551 focuses on ease of use and adoption. Unlike other proposals and projects, Token Bound works with no action needed by project owners, no wrapping contracts, and no change to the ERC-721 standard. Most importantly, every ERC-721 and ERC-1155 NFT you already own works with Token Bound Accounts — projects and creators don’t need to deploy a whole new contract to use Token Bound, and you can start using ERC-6551 immediately.
+- [Airstack React SDK](https://www.npmjs.com/package/@airstack/airstack-react)
+- [Airstack Python SDK](https://pypi.org/project/airstack/)
 
-### Why is ERC-6551 important? Why should I care?
+#### Install SDK
 
-Digital collectibles/art are the future of creation. More than ever, people around the world are using technology to create digital goods such as NFTs. ERC-6551 is the most effective way to increase the surface area of interaction for NFTs. It was designed to be easily adopted by existing marketplaces, wallets, and dapps. It is permissionless and decentralized so that no single company owns your NFT’s wallet. When it comes to token provenance ERC-6551 allows your NFT to have an on-chain identity where history is created from the NFT itself rather than your wallet.
+<Tabs items={["pnpm", "yarn", "npm", "pip"]}>
+  <Tab>
 
-### How do I know if my NFT has an account/wallet address?
+```bash
+pnpm install @airstack/airstack-react
+```
 
-Every NFT already has an Address we can compute using ERC-6551 and Token Bound. You can view the tokens inside of your Token Bound Accounts on https://tokenbound.org/. As adoption grows we are pushing for further integration into wallet apps such as Metamask, Rainbow Wallet, Coinbase, and marketplaces like OpenSea, Zora, and blur. Our SDK tooling and documentation also make it easy for creators and developers to integrate this functionality right into their own websites and apps.
+  </Tab>
+  <Tab>
 
-### What can I put in my NFT’s token bound account?
+```bash
+yarn add @airstack/airstack-react
+```
 
-Absolutely anything you would put into your old wallet. ETH, USDC, ERC-20, ERC-721, ERC-1155, and any other tokens you would normally send to your Metamask, Ledger, etc.
+  </Tab>
+  <Tab>
 
-### How can I trust my NFT’s wallet?
+```bash
+npm install @airstack/airstack-react
+```
 
-We take security seriously and we have already completed a preliminary audit with 0xMacro. We will be conducting an additional audit with Certik (with support from our contributing partner Manifold), and seeking additional coverage through Code4rena.
+</Tab>
+  <Tab>
 
-### Can I nest my Token Bound NFTs inside of each other?
+```bash
+pip3 install airstack asyncio
+```
 
-Yes! Since every NFT is a Token Bound Account, there are no limits to how many tokens you may have nested in your NFTs, or how far down you go. If you want to put an NFT inside of an NFT inside of an NFT you can. When you transfer that NFT to someone else, everything inside automatically goes along with it. This opens up many new patterns of bundling NFTs together for trading, gaming, governance and more.
+</Tab>
+</Tabs>
 
-### How do I use ERC-6551 for my project?
+#### Call Your First Query
 
-The ERC-6551 reference implementation is open source and can be used by any project. Tokebound also provides open-source tooling that makes it much easier for dapps to integrate. If you'd like to learn more about how to integrate ERC-6551 into your project, please join the [working group](https://t.me/tokenbound)
+To get your Airstack API key, go to https://app.airstack.xyz/profile-settings/api-keys
 
-### What are some of the core use cases for ERC 6551?
+<Tabs items={["React", "Python"]}>
+  <Tab>
 
-The possibilities are endless when it comes to Token Bound Accounts. However, some clear use cases are as such:
+```jsx
+import { init, useQuery } from "@airstack/airstack-react";
 
-- Inventory system for owning items, outfits, equipments
-- Community loyalty or reputation systems
-- Mint or curate baskets of assets (art, collectibles, defi)
-- Composable media structures (stems to songs, art layers to painting, digital textiles to garments)
-- New on-chain game mechanics
-- On-chain meme/derivative economies
-- NFTs as onboarding vehicles instead of wallets
+// Initialize the React SDK
+init("YOUR_AIRSTACK_API_KEY");
+
+const query = `YOUR_QUERY`;
+
+const Component = () => {
+  const { data, loading, error } = useQuery(query, {}, { cache: false });
+
+  if (error) console.log(error);
+
+  if (loading) return <div>Loading...</div>;
+
+  if (data) {
+    return (
+      //Your React UI Component
+    );
+  }
+};
+```
+
+  </Tab>
+  <Tab>
+
+```python
+import asyncio
+from airstack.execute_query import AirstackClient
+
+api_client = AirstackClient(api_key='YOUR_AIRSTACK_API_KEY')
+
+query = "YOUR_QUERY"
+
+async def main():
+    execute_query_client = api_client.create_execute_query_object(
+        query=query)
+
+    query_response = await execute_query_client.execute_query()
+
+    print(query_response.data)
+
+asyncio.run(main())
+```
+
+  </Tab>
+</Tabs>
+
+### Airstack AI
+
+You can use [Airstack AI Assistant](https://docs.airstack.xyz/airstack-docs-and-faqs/get-started/airstack-ai) to help you construct your query easily using natural languages.
+
+Go to the [Airstack Explorer](https://app.airstack.xyz/explorer) to try it out.
+
+<img
+  src="/airstack-ai.webp"
+  alt="Airstack AI UI"
+  style={{ marginTop: "20px" }}
+/>
+
+Here are a few example prompts that you can try:
+
+- [Show the most recent 10 6551 accounts on Ethereum and Polygon](https://app.airstack.xyz/ha8qvF/cyapsZc2O6)
+- [Show me all @Sapienz ERC6551 accounts and their balances](https://app.airstack.xyz/ha8qvF/uqLmTIlW7o)
+- [Show all ERC65111 accounts owned by @BoredApeYachtClub and the token balances](https://app.airstack.xyz/ha8qvF/CRcpv04wq4)
+- [Show sapienz_0.lens ERC6551 accounts](https://app.airstack.xyz/ha8qvF/Kf6QGAUiaF)
+- [Show me 6551 accounts created on July 12, 2023, on Ethereum](https://app.airstack.xyz/ha8qvF/qwcEcAqxbT)
+
+## Examples
+
+### Get the most recently created ERC-6551 accounts on Ethereum and Polygon
+
+<Tabs items={["Query", "Response"]}>
+  <Tab>
+
+```graphql
+query MyQuery {
+  ethereum: Accounts(
+    input: {
+      filter: { standard: { _eq: ERC6551 } }
+      blockchain: ethereum
+      order: { createdAtBlockTimestamp: DESC }
+      limit: 200
+    }
+  ) {
+    Account {
+      id
+      standard
+      blockchain
+      tokenAddress
+      tokenId
+      address {
+        identity
+      }
+      registry
+      implementation
+      salt
+      createdAtBlockNumber
+      createdAtBlockTimestamp
+      creationTransactionHash
+      deployer
+      updatedAtBlockNumber
+      updatedAtBlockTimestamp
+    }
+  }
+  polygon: Accounts(
+    input: {
+      filter: { standard: { _eq: ERC6551 } }
+      blockchain: polygon
+      order: { createdAtBlockTimestamp: DESC }
+      limit: 1
+    }
+  ) {
+    Account {
+      id
+      standard
+      blockchain
+      tokenAddress
+      tokenId
+      address {
+        identity
+      }
+      registry
+      implementation
+      salt
+      createdAtBlockNumber
+      createdAtBlockTimestamp
+      creationTransactionHash
+      deployer
+      updatedAtBlockNumber
+      updatedAtBlockTimestamp
+    }
+  }
+}
+```
+
+</Tab>
+<Tab>
+    
+```json
+{
+  "data": {
+    "ethereum": {
+      "Account": [
+        {
+          "id": "a304f27b838f47353a0e7282e935588e02086d88b62bd93f6857c5f38a530dea",
+          "standard": "ERC6551",
+          "blockchain": "ethereum",
+          "tokenAddress": "0xb6a37b5d14d502c3ab0ae6f3a0e058bc9517786e",
+          "tokenId": "599",
+          "address": {
+            "identity": "0x5bb5b498ff300e2ed23804443d340c7418fab4c4"
+          },
+          "registry": "0x02101dfb77fde026414827fdc604ddaf224f0921",
+          "implementation": "0x2d25602551487c3f3354dd80d76d54383a243358",
+          "salt": "0",
+          "createdAtBlockNumber": 17713013,
+          "createdAtBlockTimestamp": "2023-07-17T12:35:11Z",
+          "creationTransactionHash": "0x0102df35f0b9e07f2c375ea6ab37838251ce43d0b8da3bfb39d02d70cd5f8cea",
+          "deployer": "0x186bad94057591918c3265c4ddb12874324be8ac",
+          "updatedAtBlockNumber": 17713013,
+          "updatedAtBlockTimestamp": "2023-07-17T12:35:11Z"
+        }
+      ]
+    },
+    "polygon": {
+      "Account": [
+        {
+          "id": "05bb6fa00c99e9aceca905c7b3c0adbbbe4c463d9cd21e46986156b8075e0704",
+          "standard": "ERC6551",
+          "blockchain": "polygon",
+          "tokenAddress": "0xed97678450405fc37fcd08f026c0bbdc3af835f2",
+          "tokenId": "58",
+          "address": {
+            "identity": "0xc44f0f48b14dd230cd694a268a442ffb198b36b1"
+          },
+          "registry": "0x02101dfb77fde026414827fdc604ddaf224f0921",
+          "implementation": "0x2d25602551487c3f3354dd80d76d54383a243358",
+          "salt": "0",
+          "createdAtBlockNumber": 45187150,
+          "createdAtBlockTimestamp": "2023-07-17T12:35:50Z",
+          "creationTransactionHash": "0x8cb955fc174f9198a753c64953acbb1692c2739839280599b491c400cf7c2918",
+          "deployer": "0x58d8c0efc5b006e4686b15bcdd6ae9517ddaa788",
+          "updatedAtBlockNumber": 45187150,
+          "updatedAtBlockTimestamp": "2023-07-17T12:35:50Z"
+        }
+      ]
+    }
+  }
+}
+```
+    
+    </Tab>
+</Tabs>
+
+### Get all ERC6551 accounts owned by a given [Sapienz](https://etherscan.io/token/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36) NFT and their token holdings
+
+<Tabs items={["Query", "Response"]}>
+  <Tab>
+
+```graphql
+query MyQuery {
+  Accounts(
+    input: {
+      filter: {
+        tokenAddress: { _eq: "0x26727ed4f5ba61d3772d1575bca011ae3aef5d36" }
+        tokenId: { _eq: "0" }
+      }
+      blockchain: ethereum
+      limit: 50
+    }
+  ) {
+    Account {
+      address {
+        addresses
+      }
+      implementation
+      registry
+      salt
+      standard
+      updatedAtBlockNumber
+      updatedAtBlockTimestamp
+      createdAtBlockNumber
+      createdAtBlockTimestamp
+      creationTransactionHash
+      deployer
+    }
+  }
+}
+```
+
+</Tab>
+<Tab>
+    
+```json
+{
+  "data": {
+    "Accounts": {
+      "Account": [
+        {
+          "address": {
+            "addresses": [
+              "0x5416e5dc14caa0950b2a24ede1eb0e97c360bcf5"
+            ],
+            "tokenBalances": [
+              {
+                "amount": "1",
+                "tokenType": "ERC721",
+                "tokenAddress": "0x8ee9a60cb5c0e7db414031856cb9e0f1f05988d1",
+                "tokenId": "9707",
+                "formattedAmount": 1
+              },
+              {
+                "amount": "1",
+                "tokenType": "ERC1155",
+                "tokenAddress": "0xafda8953da1099a38a6de2aeeb181cd360beb22e",
+                "tokenId": "1",
+                "formattedAmount": 1
+              },
+              {
+                "amount": "1",
+                "tokenType": "ERC1155",
+                "tokenAddress": "0xafda8953da1099a38a6de2aeeb181cd360beb22e",
+                "tokenId": "7",
+                "formattedAmount": 1
+              }
+            ]
+          },
+          "implementation": "0x2d25602551487c3f3354dd80d76d54383a243358",
+          "registry": "0x02101dfb77fde026414827fdc604ddaf224f0921",
+          "salt": "0",
+          "standard": "ERC6551",
+          "updatedAtBlockNumber": 17213826,
+          "updatedAtBlockTimestamp": "2023-05-08T05:53:59Z",
+          "createdAtBlockNumber": 17213826,
+          "createdAtBlockTimestamp": "2023-05-08T05:53:59Z",
+          "creationTransactionHash": "0xf998cb400eebe89aa1d369792daf4c202be74dcd88981b34eb49d510b7837332",
+          "deployer": "0xa75b7833c78eba62f1c5389f811ef3a7364d44de"
+        }
+      ]
+    }
+  }
+}
+```
+    
+    </Tab>
+</Tabs>
+
+### Get NFT that owns TBA account with Lens Profile [sapienz_0.lens](https://lenster.xyz/u/sapienz_0)
+
+<Tabs items={["Query", "Response"]}>
+  <Tab>
+
+```graphql
+query MyQuery {
+  Accounts(
+    input: {
+      filter: { address: { _eq: "sapienz_0.lens" } }
+      blockchain: ethereum
+      limit: 50
+    }
+  ) {
+    Account {
+      nft {
+        address
+        tokenId
+        contentValue {
+          image {
+            original
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+</Tab>
+<Tab>
+    
+```json
+{
+  "data": {
+    "Accounts": {
+      "Account": [
+        {
+          "nft": {
+            "address": "0x26727ed4f5ba61d3772d1575bca011ae3aef5d36",
+            "tokenId": "0",
+            "contentValue": {
+              "image": {
+                "original": "https://assets.airstack.xyz/image/nft/1/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36/0/original_image.gif"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+    
+    </Tab>
+</Tabs>
+
+## Developer Support
+
+If you have any questions or need help regarding your queries on [ERC-6551](https://eips.ethereum.org/EIPS/eip-6551) accounts, please join our Airstack's [Telegram](https://t.me/+1k3c2FR7z51mNDRh) group.
+
+## More resources
+
+- [ERC6551 Query Templates](https://docs.airstack.xyz/airstack-docs-and-faqs/guides/token-bound-accounts)
+- [API Reference](https://docs.airstack.xyz/airstack-docs-and-faqs/api-references/api-reference/accounts-api)
