@@ -65,7 +65,36 @@ import { init, useQuery } from "@airstack/airstack-react";
 // Initialize the React SDK
 init("YOUR_AIRSTACK_API_KEY");
 
-const query = `YOUR_QUERY`;
+const query = `
+query MyQuery {
+  Accounts(
+    input: {
+      filter: {
+        tokenAddress: { _eq: "0x26727ed4f5ba61d3772d1575bca011ae3aef5d36" }
+        tokenId: { _eq: "0" }
+      }
+      blockchain: ethereum
+      limit: 50
+    }
+  ) {
+    Account {
+      address {
+        addresses
+      }
+      implementation
+      registry
+      salt
+      standard
+      updatedAtBlockNumber
+      updatedAtBlockTimestamp
+      createdAtBlockNumber
+      createdAtBlockTimestamp
+      creationTransactionHash
+      deployer
+    }
+  }
+}
+`;
 
 const Component = () => {
   const { data, loading, error } = useQuery(query, {}, { cache: false });
@@ -91,7 +120,36 @@ from airstack.execute_query import AirstackClient
 
 api_client = AirstackClient(api_key='YOUR_AIRSTACK_API_KEY')
 
-query = "YOUR_QUERY"
+query = """
+query MyQuery {
+  Accounts(
+    input: {
+      filter: {
+        tokenAddress: { _eq: "0x26727ed4f5ba61d3772d1575bca011ae3aef5d36" }
+        tokenId: { _eq: "0" }
+      }
+      blockchain: ethereum
+      limit: 50
+    }
+  ) {
+    Account {
+      address {
+        addresses
+      }
+      implementation
+      registry
+      salt
+      standard
+      updatedAtBlockNumber
+      updatedAtBlockTimestamp
+      createdAtBlockNumber
+      createdAtBlockTimestamp
+      creationTransactionHash
+      deployer
+    }
+  }
+}
+"""
 
 async def main():
     execute_query_client = api_client.create_execute_query_object(
