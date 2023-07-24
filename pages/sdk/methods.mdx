@@ -7,17 +7,17 @@ The TokenboundClient is instantiated with an object containing at most two param
 `walletClient` (optional) OR
 `signer` (optional)
 
-Use either a viem `walletClient` OR an Ethers `signer` for transactions that require a user to sign. Note that viem is an SDK dependency, so walletClient is preferable for most use cases. Use of Ethers signer is recommended only for legacy projects.
+Use either a viem `walletClient` [walletClient docs](https://viem.sh/docs/clients/wallet.html) OR an Ethers `signer` [signer docs](https://docs.ethers.org/v5/api/signer/) for transactions that require a user to sign. Note that viem is an SDK dependency, so walletClient is preferable for most use cases. Use of Ethers signer is recommended only for legacy projects.
 For easy reference, we've prepared [SDK code examples](https://github.com/tokenbound/sdk/tree/main/examples) for each method.
 
 ```ts copy
-const tokenboundClient = new TokenboundClient({ walletClient, chainId: 1 });
+const tokenboundClient = new TokenboundClient({ walletClient, chainId: 1 })
 ```
 
 **OR**
 
 ```ts copy
-const tokenboundClient = new TokenboundClient({ signer, chainId: 1 });
+const tokenboundClient = new TokenboundClient({ signer, chainId: 1 })
 ```
 
 | Parameter    |           |
@@ -29,14 +29,14 @@ const tokenboundClient = new TokenboundClient({ signer, chainId: 1 });
 Then use the TokenboundClient to interact with the Tokenbound contracts and Tokenbound accounts:
 
 ```ts copy
-const tokenboundClient = new TokenboundClient({ signer, chainId: 1 });
+const tokenboundClient = new TokenboundClient({ signer, chainId: 1 })
 
 const tokenBoundAccount = tokenboundClient.getAccount({
   tokenContract: "<token_contract_address>",
   tokenId: "<token_id>",
-});
+})
 
-console.log(tokenBoundAccount); //0x1a2...3b4cd
+console.log(tokenBoundAccount) //0x1a2...3b4cd
 ```
 
 ---
@@ -49,9 +49,9 @@ console.log(tokenBoundAccount); //0x1a2...3b4cd
 const tokenBoundAccount = tokenboundClient.getAccount({
   tokenContract: "<token_contract_address>",
   tokenId: "<token_id>",
-});
+})
 
-console.log(tokenBoundAccount); //0x1a2...3b4cd
+console.log(tokenBoundAccount) //0x1a2...3b4cd
 ```
 
 | Parameter     | Description                        | Type   |
@@ -69,9 +69,9 @@ console.log(tokenBoundAccount); //0x1a2...3b4cd
 const preparedAccount = await tokenboundClient.prepareCreateAccount({
   tokenContract: "<token_contract_address>",
   tokenId: "<token_id>",
-});
+})
 
-console.log(preparedAccount); //0x1a2...3b4cd
+console.log(preparedAccount) //0x1a2...3b4cd
 ```
 
 | Parameter     | Description                        | Type   |
@@ -89,9 +89,9 @@ console.log(preparedAccount); //0x1a2...3b4cd
 const account = await tokenboundClient.createAccount({
   tokenContract: "<token_contract_address>",
   tokenId: "<token_id>",
-});
+})
 
-console.log(createAccount); //0x1a2...3b4cd
+console.log(createAccount) //0x1a2...3b4cd
 ```
 
 | Parameter     | Description                        | Type   |
@@ -111,9 +111,9 @@ const preparedCall = await tokenboundClient.prepareExecuteCall({
   to: "<recipient_address>",
   value: "<wei_value>",
   data: "<data>",
-});
+})
 
-console.log(preparedCall); //...
+console.log(preparedCall) //...
 ```
 
 | Parameter | Description                     | Type   |
@@ -135,9 +135,9 @@ const executedCall = await tokenboundClient.executeCall({
   to: "<recipient_address>",
   value: "<wei_value>",
   data: "<data>",
-});
+})
 
-console.log(executedCall); //...
+console.log(executedCall) //...
 ```
 
 | Parameter   | Description                     | Type   |
