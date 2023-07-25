@@ -25,17 +25,7 @@ const config: DocsThemeConfig = {
       />
     </>
   ),
-  logo,
-  sidebar: {
-    titleComponent({ title, type }) {
-      if (type === 'separator') {
-        return <span className="cursor-default">{title}</span>
-      }
-      return <>{title}</>
-    },
-    defaultMenuCollapseLevel: 2,
-    toggleButton: true
-  },
+  logo: <img src="/tokenbound-logo.svg" />,
   project: {
     link: "https://github.com/tokenbound",
   },
