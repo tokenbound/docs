@@ -21,7 +21,7 @@ const config: DocsThemeConfig = {
   project: {
     link: "https://github.com/tokenbound",
   },
-  docsRepositoryBase: "https://github.com/tokenbound/docs",
+  docsRepositoryBase: "https://github.com/tokenbound/docs/blob/main",
   footer: {
     text: "Tokenbound 2023",
   },
