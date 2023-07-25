@@ -14,6 +14,7 @@ If you're using one of the many Web3 starter kits, make sure that you're using a
 
 ## Goal: Read Tokenbound Account for any NFT
 The following Tutorial is uses <a href="https://wagmi.sh/cli/create-wagmi" target="_blank">`create-wagmi` ↗️</a> boilerplate
+
 ![demo image](https://i.imgur.com/z7a17B3.png)
 
 <Cards>
@@ -34,17 +35,18 @@ The following Tutorial is uses <a href="https://wagmi.sh/cli/create-wagmi" targe
     $ npm init wagmi
   ```
   This is the config used for the demo:
+
   ![](https://i.imgur.com/Ubustim.png)
-  <br/>
-next, we install the `tokenbound/sdk`
+
+  next, we install the `tokenbound/sdk`
   ```
   $ npm install @tokenbound/sdk
   ```
 ### Create form to input NFT contract address and token Id
 We want a component that allows entering NFT contract address and Token Id. And another component that allows viewing the associated Tokenbound account
-#### The first component
+
 ![](https://i.imgur.com/znpEUZw.png)
-<br/>
+
 The `src/app/page.tsx` is pre-populated with some helpful components that wagmi provides with the boilerplate. We can remove them for now. Feel free to remove everything from that file and add this:
 ```typescript
 // src/app/page.tsx
@@ -57,7 +59,7 @@ export default function Page() {
   )
 }
 ```
-<br />
+
 We create a new component inside `src/components` called `tba.tsx`
 ```typescript
 'use client'
@@ -73,7 +75,7 @@ export default function TBA() {
 	)
 }
 ```
-<br/>
+
 We can now import this component in our home page inside `src/app/page.tsx`:
 ```typescript
 // src/app/page.tsx
@@ -91,7 +93,7 @@ export default function Page() {
   )
 }
 ```
-<br/>
+
 we first define global functions and objects in `tba.tsx` component:
 ```typescript
 // src/components/tba.tsx
@@ -107,7 +109,6 @@ const DEFAULT_ACCOUNT: TBAccountParams = {
 }
 ```
 
-<br/>
 then state variables and helper functions:
 
 ```typescript
@@ -146,7 +147,6 @@ export default function TBA() {
 }
 ```
 
-<br/>
 Inside this component, we return with a basic structure of the component, before adding a form in the next step:
 ```typescript
 // src/components/tba.tsx
@@ -176,7 +176,7 @@ return (
 	)
 }
 ```
-<br/>
+
 and finally we create a form like:
 ```typescript
 // src/components/tba.tsx
@@ -248,7 +248,7 @@ return (
 ### Display data
 Next, we display the data we stored in state variables in the previous step inside our TBA component
 ![](https://i.imgur.com/wCExmiv.png)
-<br/>
+
 we now just display all the state variables we defined
 ```typescript
 // src/components/tba.tsx
