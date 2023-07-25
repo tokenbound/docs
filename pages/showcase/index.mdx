@@ -1,0 +1,35 @@
+import { Card, Cards } from 'nextra/components'
+
+# Showcase
+
+<Cards>
+  <ShowcaseCard title="Node.js" href="https://nodejs.org/en">
+    <>![Node.js preview](https://i.imgur.com/z7a17B3.png)</>
+  </ShowcaseCard>
+  <ShowcaseCard title="The Graph" href="https://thegraph.com/docs/en">
+    <>![The Graph preview](https://i.imgur.com/z7a17B3.png)</>
+  </ShowcaseCard>
+  <ShowcaseCard title="Turbo" href="https://turbo.build">
+    <>![Turbo preview](https://i.imgur.com/z7a17B3.png)</>
+  </ShowcaseCard>
+</Cards>
+
+export const ShowcaseCard = Object.assign(
+  // Copy card component and add default props
+  Card.bind(),
+  {
+    displayName: 'ShowcaseCard',
+    defaultProps: {
+      image: true,
+      arrow: true,
+      target: '_blank'
+    }
+  }
+)
+
+<style global jsx>{`
+  img {
+    aspect-ratio: 12/6.3;
+    object-fit: cover;
+  }
+`}</style>
