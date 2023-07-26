@@ -1,0 +1,97 @@
+import { Card, Cards } from 'nextra/components'
+
+# Showcase
+<div className="showcase">
+<Cards>
+  <ShowcaseCard title="Tribes Inc." href="https://www.tribes.xyz/">
+    ![Tribes Inc.](https://i.imgur.com/CZFzpeE.png)
+    <div className="description">
+      Chat, transact and co-own assets with anybody on Ethereum and Solana.
+    </div>
+  </ShowcaseCard>
+  <ShowcaseCard title="GroupOS by Station Network" href="https://station.mirror.xyz/wV3sS2WN8DymlBtRVa5tn6tLxQx3mu_6rEdoydy_SGU">
+    <>![GroupOS](https://i.imgur.com/wNVcvu7.jpg)</>
+    <div className="description">
+      Station provides rails for groups to mobilize and do cool things on the Internet. GroupOS, our flagship product, is a modular toolkit powering digital collectives to own, govern, reward, and grow their networks, programmatically.
+    </div>
+  </ShowcaseCard>
+  <ShowcaseCard title="Buddy Wallet" href="https://buddywallet.io">
+      <>![Buddy Wallet](https://i.imgur.com/FqtcEJU.png)</>
+      <div className="description">
+        Buddy Wallet is a friendly way to view any of your assets associated ERC6551 wallet, or what I refer to as a Buddy! I am working on adding support for people to transfer assets in and out of the Buddy, send ETH with the Buddy and so on. But the purpose of it is to provide an easy, beginner friendly solution to viewing an ERC6551 wallet.
+      </div>
+  </ShowcaseCard>
+    <ShowcaseCard title="Sofamon" href="https://sofamon.xyz/">
+      <>![Sofamon](https://i.imgur.com/4ctaQD3.png)</>
+      <div className="description">
+        The desktop pet which makes your onchain interactions 10x more interesting
+      </div>
+  </ShowcaseCard>
+
+</Cards>
+</div>
+
+### Previous hackathon bounty winners 🏆
+<div className="showcase">
+<Cards>
+    <ShowcaseCard title="Piggybank NFTs" href="https://ethglobal.com/showcase/piggybank-6551-nft-e2ai5">
+      ![Piggybank NFTs](https://i.imgur.com/hy3jRcw.png)
+      <div className="description">
+        Piggybank NFTs are 6551-powered ETH savings accounts. Anyone can mint a Piggybank, send it some ETH, and keep track of your growing balance in the NFT's onchain rendered SVG metadata. To get the ETH out, you'll have to burn the Piggybank NFT.
+      </div>
+    </ShowcaseCard>
+  <ShowcaseCard title="Habitat" href="https://ethglobal.com/showcase/habitat-zpg07">
+    <>![Habitat](https://i.imgur.com/g76Mg0R.png)</>
+    <div className="description">
+      Habitat is a sub-application focused on environmental conservation and social responsibility. It transforms energy from both on-chain and off-chain regenerative activities, converting it into real trees to foster a sustainable future.
+    </div>
+  </ShowcaseCard>
+  <ShowcaseCard title="Fukuro" href="https://ethglobal.com/showcase/fukuro-3cdwv">
+    <>![Fukuro](https://i.imgur.com/APCAM4Y.png)</>
+    <div className="description">
+      Bundle curations with EIP 6551. Auction marketplace for EIP 6551 supported tokens.
+    </div>
+  </ShowcaseCard>
+  <ShowcaseCard title="Aquanet" href="https://ethglobal.com/showcase/fukuro-3cdwv">
+    <>![Aquanet](https://i.imgur.com/1W797K6.png)</>
+    <div className="description">
+      A social network designed for AI-Driven NFTs to interact with each other and develop unique personalities.
+    </div>
+  </ShowcaseCard>
+  <ShowcaseCard title="Tokenbound Titans" href="https://ethglobal.com/showcase/fukuro-3cdwv">
+    <>![Tokenbound Titans](https://i.imgur.com/L2puved.png)</>
+    <div className="description">
+      An implementation of ERC-6551 for NPC gaming; in combination with dynamic generative NFTs
+    </div>
+  </ShowcaseCard>
+  <ShowcaseCard title="ETHStacks" href="https://ethglobal.com/showcase/ethstacks-gdtth">
+    <>![EthStacks](https://i.imgur.com/CWAvQBX.png)</>
+    <div className="description">
+      ETHStacks.xyz is an account management interface for token bound accounts (TBAs). Stack your assets through token bound accounts and manage them all through a simple interface.
+    </div>
+  </ShowcaseCard>
+</Cards>
+</div>
+
+export const ShowcaseCard = Object.assign(
+  // Copy card component and add default props
+  Card.bind(),
+  {
+    displayName: 'ShowcaseCard',
+    defaultProps: {
+      image: true,
+      arrow: true,
+      target: '_blank'
+    }
+  }
+)
+
+<style global jsx>{`
+  .showcase img {
+    aspect-ratio: 12/6.3;
+    object-fit: cover;
+  }
+  .showcase .description {
+    padding: 20px;
+  }
+`}</style>

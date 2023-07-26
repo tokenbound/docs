@@ -18,5 +18,9 @@
     "type": "page",
     "href": "https://github.com/anggxyz/awesome-tokenbound",
     "newWindow": true
+  },
+  "showcase": {
+    "title": "Showcase",
+    "type": "page"
   }
 }
