@@ -12,5 +12,11 @@
     "type": "page",
     "href": "https://eips.ethereum.org/EIPS/eip-6551",
     "newWindow": true
+  },
+  "awesome-tokenbound": {
+    "title": "Awesome Tokenbound ↗️",
+    "type": "page",
+    "href": "https://github.com/anggxyz/awesome-tokenbound",
+    "newWindow": true
   }
 }
