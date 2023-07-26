@@ -12,5 +12,9 @@
     "type": "page",
     "href": "https://eips.ethereum.org/EIPS/eip-6551",
     "newWindow": true
+  },
+  "showcase": {
+    "title": "Showcase",
+    "type": "page"
   }
 }
