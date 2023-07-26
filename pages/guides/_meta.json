@@ -1,3 +1,4 @@
 {
-  "sdk-create-wagmi": "Read a TBA"
+  "sdk-create-wagmi": "Read a TBA",
+  "deploy-registry": "Deploy Registry Contract"
 }
