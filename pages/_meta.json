@@ -8,7 +8,7 @@
   "sdk": "SDK",
   "contracts": "Contracts",
   "eip": {
-    "title": "ERC-6551",
+    "title": "EIP-6551 ↗️",
     "type": "page",
     "href": "https://eips.ethereum.org/EIPS/eip-6551",
     "newWindow": true
