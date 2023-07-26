@@ -1,7 +1,6 @@
 {
   "index": "Introduction",
-  "start": "Start Here",
-  "use": "Use Cases",
+  "guides": "Guides",
   "faq": "FAQs",
   "---": {
     "type": "separator"

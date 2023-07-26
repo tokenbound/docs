@@ -4,7 +4,7 @@ import {BiCodeAlt} from "react-icons/bi";
 import { AiOutlineRight } from 'react-icons/ai';
 import Image from 'next/image'
 
-# Get Started
+# Read a Tokenbound Account associated with an NFT
 
 The Tokenbound SDK is compatible with both [viem](https://viem.sh/) and [Ethers](https://docs.ethers.org/v6/). viem is a core SDK dependency, so we recommend using viem except for legacy Ethers projects.
 
@@ -12,11 +12,11 @@ The Tokenbound SDK is compatible with both [viem](https://viem.sh/) and [Ethers]
 If you're using one of the many Web3 starter kits, make sure that you're using a recent release of viem (>1.0), Ethers 5.7+, or 6 to avoid issues.
 </Callout>
 
-## Goal: Read Tokenbound Account for any NFT
+
 The following Tutorial uses <a href="https://wagmi.sh/cli/create-wagmi" target="_blank">`create-wagmi` ↗️</a> boilerplate
-
-![demo image](https://i.imgur.com/z7a17B3.png)
-
+<br/>
+<Image src="https://i.imgur.com/z7a17B3.png" width="650" height="150" alt="demo screenshot" />
+<br/>
 <Cards>
   <Card
       icon={<BsWindowFullscreen style={{placeSelf: "center"}} />}
@@ -42,7 +42,7 @@ The following Tutorial uses <a href="https://wagmi.sh/cli/create-wagmi" target="
   ```
   $ npm install @tokenbound/sdk
   ```
-### Create form to input NFT contract address and token Id
+### Create a Form to input NFT contract address and token Id
 We want a component that allows entering NFT contract address and Token Id. And another component that allows viewing the associated Tokenbound account
 
 ![](https://i.imgur.com/znpEUZw.png)
@@ -71,9 +71,9 @@ We create a new component inside `src/components` called `tba.tsx`
 ...
 
 export default function TBA() {
-	return (
-		<div></div>
-	)
+  return (
+    <div></div>
+  )
 }
 ```
 
@@ -118,10 +118,10 @@ then state variables and helper functions:
 // ...
 // ...
 export default function TBA() {
-	const { data: walletClient, isError, isLoading } = useWalletClient();
-	const tokenboundClient = new TokenboundClient({ walletClient, chainId: CHAIN_ID })
+  const { data: walletClient, isError, isLoading } = useWalletClient();
+  const tokenboundClient = new TokenboundClient({ walletClient, chainId: CHAIN_ID })
 
-	const [retrievedAccount, setRetrievedAccount] = useState<string>("");
+  const [retrievedAccount, setRetrievedAccount] = useState<string>("");
   const [TBAccount, setTBAccount] = useState<TBAccountParams>(DEFAULT_ACCOUNT)
 
   const getAccount = () => {
@@ -173,7 +173,7 @@ return (
       </div>
     </div>
   </main>
-	)
+  )
 }
 ```
 
@@ -187,51 +187,51 @@ export default function TBA() {
 // ...
 
 return (
-	<>
+  <>
 // ...
 // ...
 // ...
 
-		<form onSubmit={getAccount()}
-			className="grid md:grid-cols-2 grid-cols-1 gap-4">
+    <form onSubmit={getAccount()}
+      className="grid md:grid-cols-2 grid-cols-1 gap-4">
 
-			<label htmlFor="nftContract">
-		    NFT Contract
-		  </label>
-		  <input
-					type="text"
-					className="h-fit p-2 rounded-lg bg-slate-300 text-black"
-					id="nftContract"
-					onChange={(event) => setTBAccount({
-										...TBAccount,
-										tokenContract: event.target.value as TBAccountParams["tokenContract"]
-					})}
-					value={TBAccount.tokenContract}
-			/>
+      <label htmlFor="nftContract">
+        NFT Contract
+      </label>
+      <input
+          type="text"
+          className="h-fit p-2 rounded-lg bg-slate-300 text-black"
+          id="nftContract"
+          onChange={(event) => setTBAccount({
+                    ...TBAccount,
+                    tokenContract: event.target.value as TBAccountParams["tokenContract"]
+          })}
+          value={TBAccount.tokenContract}
+      />
 
-		  <label htmlFor="nftTokenId">
-		    Token ID
-		  </label>
+      <label htmlFor="nftTokenId">
+        Token ID
+      </label>
 
 
-		  <input
-					type="text"
-					className="h-fit p-2 rounded-lg bg-slate-300 text-black"
-					id="nftTokenId"
-					onChange={(event) => setTBAccount({
-									...TBAccount,
-									tokenId: event.target.value
-					})}
-					value={TBAccount.tokenId}
-			/>
+      <input
+          type="text"
+          className="h-fit p-2 rounded-lg bg-slate-300 text-black"
+          id="nftTokenId"
+          onChange={(event) => setTBAccount({
+                  ...TBAccount,
+                  tokenId: event.target.value
+          })}
+          value={TBAccount.tokenId}
+      />
 
-		  <button
-					type="submit"
-					className="h-fit p-2 bg-slate-100 rounded-lg col-span-2 text-black self-end">
-				Check
-			</button>
+      <button
+          type="submit"
+          className="h-fit p-2 bg-slate-100 rounded-lg col-span-2 text-black self-end">
+        Check
+      </button>
 
-		</form>
+    </form>
 // ...
 // ...
 // ...
