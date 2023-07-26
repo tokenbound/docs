@@ -9,7 +9,16 @@ const withNextra = require("nextra")({
 });
 
 //module.exports = nextConfig;
-module.exports = withNextra();
+module.exports = withNextra({
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.imgur.com'
+      },
+    ],
+  },
+});
 
 // If you have other Next.js configurations, you can pass them as the parameter:
 // module.exports = withNextra({ /* other next.js config */ })

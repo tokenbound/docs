@@ -26,7 +26,7 @@ const config: DocsThemeConfig = {
       }
       return <>{title}</>
     },
-    defaultMenuCollapseLevel: 2,
+    defaultMenuCollapseLevel: 0,
     toggleButton: true
   },
   project: {

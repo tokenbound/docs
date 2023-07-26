@@ -1,6 +1,5 @@
 {
-  "start": "Quick Start",
-  "deployments": "Deployed Addresses",
   "registry": "ERC6551Registry",
+  "deployments": "Deployed Addresses",
   "account": "Account"
 }
