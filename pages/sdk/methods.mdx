@@ -83,7 +83,7 @@ console.log(preparedAccount) //0x1a2...3b4cd
 
 ### createAccount
 
-**Returns** the transaction hash of the transaction that created the tokenbound account for a given token contract and token ID.
+**Returns** the account address of the tokenbound account created. If an account already exists, the existing account is returned.
 
 ```typescript
 const account = await tokenboundClient.createAccount({
