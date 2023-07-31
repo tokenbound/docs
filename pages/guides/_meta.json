@@ -1,5 +1,6 @@
 {
   "read-a-tba": "Read a TBA",
   "deploy-registry": "Deploy Registry Contract",
-  "deploy-account-implementation": "Deploy Account Implementation Contract"
+  "deploy-account-implementation": "Deploy Account Implementation Contract",
+  "interact-with-tba": "Interact with TBA using nodejs"
 }
