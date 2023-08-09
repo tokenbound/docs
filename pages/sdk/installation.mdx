@@ -1,9 +1,13 @@
 import { Callout } from "nextra-theme-docs";
 import { Tab, Tabs } from "nextra-theme-docs";
 
+# Overview
+
+The Tokenbound SDK currently supports projects using Ethers or Viem to interact with Ethereum. The SDK makes it easy to query ERC-6551 account addresses for any NFT and execute transactions against accounts.
+
 # Installation
 
-The Tokenbound SDK is compatible with viem and Ethers. Install the correct version of the SDK based on the library you are using in your application.
+The Tokenbound SDK is compatible with both [viem](https://viem.sh/) and [Ethers](https://docs.ethers.org/v6/). viem is a core SDK dependency, so we recommend using viem except for legacy Ethers projects.
 
 Note: If making use of one of the many Web3 starter kits, please make sure that you're using a recent release of viem (>1.0), Ethers 5.7+, or 6 to avoid issues.
 
@@ -38,6 +42,7 @@ To help you get started more quickly, we've assembled bare-bones [example apps u
 - [vite-wagmi-viem](https://github.com/tokenbound/sdk/tree/main/examples/vite-wagmi-viem)
 - [vite-wagmi-ethers](https://github.com/tokenbound/sdk/tree/main/examples/vite-wagmi-ethers)
 - [vite-wagmi-ethers6](https://github.com/tokenbound/sdk/tree/main/examples/vite-wagmi-ethers6)
+- [vite-wagmi-ethers-rainbowkit](https://github.com/tokenbound/sdk/tree/main/examples/vite-wagmi-ethers-rainbowkit)
 
 ---
 

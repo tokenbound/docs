@@ -8,15 +8,16 @@ If you need to index ERC6551 on-chain data, you can use [Airstack](https://docs.
 
 Airstack provides a GraphQL API solution to index [ERC-6551](https://eips.ethereum.org/EIPS/eip-6551) accounts on both Ethereum and Polygon.
 
-You can try using Airstack now to index [ERC-6551](https://eips.ethereum.org/EIPS/eip-6551) accounts by using the [Airstack Explorer](https://app.airstack.xyz/explorer).
+You can try using Airstack now to index [ERC-6551](https://eips.ethereum.org/EIPS/eip-6551) accounts by using the [Airstack API Studio](https://app.airstack.xyz/api-studio).
 
 For production, the Airstack GraphQL endpoint is available at https://api.airstack.xyz/graphql.
 
 ### Airstack SDK
 
-Airstack provides two official SDKs to help you index [ERC-6551](https://eips.ethereum.org/EIPS/eip-6551) accounts in your application:
+Airstack provides three official SDKs to help you index [ERC-6551](https://eips.ethereum.org/EIPS/eip-6551) accounts in your application:
 
 - [Airstack React SDK](https://www.npmjs.com/package/@airstack/airstack-react)
+- [Airstack NodeJS SDK](https://www.npmjs.com/package/@airstack/node)
 - [Airstack Python SDK](https://pypi.org/project/airstack/)
 
 #### Install SDK
@@ -189,6 +190,12 @@ Here are a few example prompts that you can try:
 
 ### Get the most recently created ERC-6551 accounts on Ethereum and Polygon
 
+#### Try Demo
+
+https://app.airstack.xyz/DTyOZg/eStK6UmL89
+
+### Code
+
 <Tabs items={["Query", "Response"]}>
   <Tab>
 
@@ -314,6 +321,12 @@ query MyQuery {
 
 ### Get all ERC6551 accounts owned by a given [Sapienz](https://etherscan.io/token/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36) NFT and their token holdings
 
+#### Try Demo
+
+https://app.airstack.xyz/DTyOZg/kAehhArEKf
+
+#### Code
+
 <Tabs items={["Query", "Response"]}>
   <Tab>
 
@@ -406,6 +419,12 @@ query MyQuery {
 </Tabs>
 
 ### Get NFT that owns TBA account with Lens Profile [sapienz_0.lens](https://lenster.xyz/u/sapienz_0)
+
+#### Try Demo
+
+https://app.airstack.xyz/DTyOZg/dcgvPiHtZn
+
+#### Code
 
 <Tabs items={["Query", "Response"]}>
   <Tab>

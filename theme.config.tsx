@@ -17,13 +17,24 @@ const config: DocsThemeConfig = {
       />
     </>
   ),
-  logo: <img src="/tokenbound-logo.svg" />,
+  // eslint-disable-next-line @next/next/no-img-element
+  logo: <img src="/tokenbound-logo.svg" alt="tokenbound logo" />,
+  sidebar: {
+    titleComponent({ title, type }) {
+      if (type === 'separator') {
+        return <span className="cursor-default">{title}</span>
+      }
+      return <>{title}</>
+    },
+    defaultMenuCollapseLevel: 0,
+    toggleButton: true
+  },
   project: {
     link: "https://github.com/tokenbound",
   },
-  docsRepositoryBase: "https://github.com/tokenbound/docs",
+  docsRepositoryBase: "https://github.com/tokenbound/docs/blob/main",
   footer: {
-    text: "Tokenbound 2023",
+    text: `Tokenbound ${new Date().getFullYear()}`,
   },
   primaryHue: 199,
   banner: {

@@ -1,8 +1,8 @@
-import { Callout } from "nextra-theme-docs";
-import { Steps } from "nextra-theme-docs";
-import React from "react";
+import { Callout } from "nextra-theme-docs"
+import { Steps } from "nextra-theme-docs"
+import React from "react"
 
-import { useState } from "react";
+import { useState } from "react"
 
 export function Iframe({ src }) {
   return (
@@ -27,7 +27,7 @@ export function Iframe({ src }) {
         allow="clipboard-read; clipboard-write"
       ></iframe>
     </div>
-  );
+  )
 }
 
 # Iframe Starter Kit
@@ -48,7 +48,7 @@ This basic iframe implementation lets users explore their NFT's tokenbound accou
 <br />
 <Iframe
   src={
-    "https://iframe-tokenbound.vercel.app/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36/1"
+    "https://iframe-tokenbound.vercel.app/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36/1/1"
   }
 />
 # URL Implementation
@@ -58,22 +58,31 @@ This method requires updating the `animation_url` of your NFT's metadata to matc
 
 ```json
 {
-  "animation_url": "https://iframe-tokenbound.vercel.app/<contractAddress>/<tokenId>"
+  "animation_url": "https://iframe-tokenbound.vercel.app/<contractAddress>/<tokenId>/<chainId>"
 }
 ```
 
 `contractAddress`: the contract address of the NFT collection you wish to display <br/>
-`tokenId`: the token ID of the individual NFT to be rendered in the iframe
+`tokenId`: the token ID of the individual NFT to be rendered in the iframe <br />
+`chainId`: the chain ID of where your NFT collection resides. The following tables shows currently supported chains.
 
-For example, using `token ID 1` from the `Sapienz` collection: [https://iframe-tokenbound.vercel.app/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36/1](https://iframe-tokenbound.vercel.app/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36/1)
+| Network          | Chain ID |
+| ---------------- | -------- |
+| Ethereum Mainnet | 1        |
+| Ethereum Goerli  | 5        |
+| Polygon Mainnet  | 137      |
+| Polygon Mumbai   | 80001    |
+| Optimism Mainnet | 420      |
+
+For example, using `token ID 1` from the `Sapienz` collection on mainnet `1`: [https://iframe-tokenbound.vercel.app/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36/1/1](https://iframe-tokenbound.vercel.app/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36/1/1)
 
 <Callout emoji="✍🏽">
-  The `URL` iframe method currently only supports Ethereum mainnet. We are
-  working to integrate this with Sepolia, Goerli and other EVM compatible
-  chains.
+  The old url without the chain ID will still be supported. However to receive
+  new features and UI updates, please point the `animation_url` to one of the
+  chain IDs listed above.
 </Callout>
 
-This iframe implementation relies on Alchemy's indexer to render the NFT's media. If your project uses a custom API to render the NFT's media, us the custom implementation below.
+This iframe implementation relies on Alchemy's indexer to render the NFT's media. If your project uses a custom API to render the NFT's media, use the custom implementation below.
 
 # Custom Implementation
 
@@ -124,7 +133,7 @@ Host your application on a service provider of your choice and set your metadata
 
 ```json
 {
-  "animation_url": "https://iframe-tokenbound.vercel.app/<contractAddress>/<tokenId>"
+  "animation_url": "https://iframe-tokenbound.vercel.app/<contractAddress>/<tokenId>/<chainId>"
 }
 ```
 
