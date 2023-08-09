@@ -1,8 +1,8 @@
-import { Callout } from "nextra-theme-docs"
-import { Steps } from "nextra-theme-docs"
-import React from "react"
+import { Callout } from "nextra-theme-docs";
+import { Steps } from "nextra-theme-docs";
+import React from "react";
 
-import { useState } from "react"
+import { useState } from "react";
 
 export function Iframe({ src }) {
   return (
@@ -27,7 +27,7 @@ export function Iframe({ src }) {
         allow="clipboard-read; clipboard-write"
       ></iframe>
     </div>
-  )
+  );
 }
 
 # Iframe Starter Kit
@@ -107,12 +107,14 @@ NEXT_PUBLIC_ALCHEMY_KEY="<alchemy_key>"
 NEXT_PUBLIC_PROVIDER_ENDPOINT="https://..."
 ```
 
-### Create an account and API key for [n.xyz](https://n.xyz/). This is for checking token approvals.
+### Navigate to [The Graph](https://thegraph.com/studio/) studio, login and create an API key.
 
-Update `NEXT_PUBLIC_NXYZ_API_KEY` with your n.xyz credentials. Make sure you enable cors for `n.xyz` for the api key to your domain or `*` for all domains.
+This is for checking token approvals. You will need to fund your account with GRT tokens.
+
+Update `NEXT_PUBLIC_GRAPH_API_KEY` with your sub graph credentials.
 
 ```
-NEXT_PUBLIC_NXYZ_API_KEY="<nxyz_api_key>"
+NEXT_PUBLIC_GRAPH_API_KEY="<graph_api_key>"
 ```
 
 ### Use in your custom api endpoint to fetch your NFT's media
