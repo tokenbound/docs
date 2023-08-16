@@ -101,6 +101,27 @@ console.log(createAccount) //0x1a2...3b4cd
 
 ---
 
+### checkAccountDeployment
+
+**Returns** a boolean indicating if a tokenbound account has been deployed at the accountAddress
+
+```ts copy
+const SAPIENZ_GOERLI_TOKEN_TBA_TOKENID_0 =
+  "0x33D622b211C399912eC0feaaf1caFD01AFA53980" as `0x${string}`
+
+const isAccountDeployed = await tokenboundClient.checkAccountDeployment({
+  accountAddress: SAPIENZ_GOERLI_TOKEN_TBA_TOKENID_0,
+})
+
+console.log("IS SAPIENZ 0 DEPLOYED?", isAccountDeployed) //...
+```
+
+| Parameter          | Description                     | Type   |
+| ------------------ | ------------------------------- | ------ |
+| **accountAddress** | The Tokenbound account address. | string |
+
+---
+
 ### prepareExecuteCall
 
 **Returns** A Promise with prepared transaction to execute a call on a Tokenbound account. Can be sent via `sendTransaction` on an Ethers signer or via WalletClient.
