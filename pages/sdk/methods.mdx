@@ -166,3 +166,57 @@ console.log(executedCall) //...
 | **account** | The Tokenbound account address. | string |
 | **to**      | The recipient address.          | string |
 | **value**   | The value to send, in wei.      | bigint |
+
+---
+
+### getNFT
+
+Extracts information about the NFT paired with the Tokenbound account from the account bytecode.
+
+**Returns** a Promise that resolves to a **TokenboundAccountNFT** object. The TokenboundAccountNFT object contains the following properties:
+
+- _tokenContract_: The token contract address
+- _tokenId_: The token ID
+- _chainId_: The chain ID
+
+```ts
+const nft = await client.getNFT({
+  accountAddress: "<account_address>",
+})
+
+const { tokenContract, tokenId, chainId } = nft
+
+console.log({ tokenContract, tokenId, chainId })
+```
+
+| Parameter          | Description                     | Type   |
+| ------------------ | ------------------------------- | ------ |
+| **accountAddress** | The Tokenbound account address. | string |
+
+---
+
+### deconstructBytecode
+
+Deconstructs the bytecode of a Tokenbound account into its constituent parts.
+
+**Returns** a Promise that resolves to a **SegmentedERC1155Bytecode** object, or null if the account is not deployed. The **SegmentedERC1155Bytecode** object contains the following properties:
+
+- **_erc1167Header_**: ERC-1167 Header
+- **_implementationAddress_**: The ERC-6551 implementation address
+- **_erc1167Footer_**: ERC-1167 Footer
+- **_salt_**: The salt value
+- **_tokenId_**: The token ID
+- **_tokenContract_**: The token contract address
+- **_chainId_**: The chain ID
+
+```ts
+const segmentedBytecode = await client.deconstructBytecode({
+  accountAddress: "<account_address>",
+})
+
+console.log(segmentedBytecode)
+```
+
+| Parameter          | Description                     | Type   |
+| ------------------ | ------------------------------- | ------ |
+| **accountAddress** | The Tokenbound account address. | string |
