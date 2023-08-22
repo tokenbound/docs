@@ -20,11 +20,11 @@ const tokenboundClient = new TokenboundClient({ walletClient, chainId: 1 })
 const tokenboundClient = new TokenboundClient({ signer, chainId: 1 })
 ```
 
-| Parameter    |           |
-| ------------ | --------- |
-| walletClient | optional  |
-| signer       | optional  |
-| chainId      | mandatory |
+| Parameter        |           |
+| ---------------- | --------- |
+| **walletClient** | optional  |
+| **signer**       | optional  |
+| **chainId**      | mandatory |
 
 Then use the TokenboundClient to interact with the Tokenbound contracts and Tokenbound accounts:
 
@@ -54,10 +54,10 @@ const tokenBoundAccount = tokenboundClient.getAccount({
 console.log(tokenBoundAccount) //0x1a2...3b4cd
 ```
 
-| Parameter     | Description                        | Type   |
-| ------------- | ---------------------------------- | ------ |
-| tokenContract | The address of the token contract. | string |
-| tokenId       | The token ID.                      | string |
+| Parameter         | Description                        | Type   |
+| ----------------- | ---------------------------------- | ------ |
+| **tokenContract** | The address of the token contract. | string |
+| **tokenId**       | The token ID.                      | string |
 
 ---
 
@@ -74,10 +74,10 @@ const preparedAccount = await tokenboundClient.prepareCreateAccount({
 console.log(preparedAccount) //0x1a2...3b4cd
 ```
 
-| Parameter     | Description                        | Type   |
-| ------------- | ---------------------------------- | ------ |
-| tokenContract | The address of the token contract. | string |
-| tokenId       | The token ID.                      | string |
+| Parameter         | Description                        | Type   |
+| ----------------- | ---------------------------------- | ------ |
+| **tokenContract** | The address of the token contract. | string |
+| **tokenId**       | The token ID.                      | string |
 
 ---
 
@@ -94,10 +94,10 @@ const account = await tokenboundClient.createAccount({
 console.log(createAccount) //0x1a2...3b4cd
 ```
 
-| Parameter     | Description                        | Type   |
-| ------------- | ---------------------------------- | ------ |
-| tokenContract | The address of the token contract. | string |
-| tokenId       | The token ID.                      | string |
+| Parameter         | Description                        | Type   |
+| ----------------- | ---------------------------------- | ------ |
+| **tokenContract** | The address of the token contract. | string |
+| **tokenId**       | The token ID.                      | string |
 
 ---
 
@@ -122,6 +122,32 @@ console.log("IS SAPIENZ 0 DEPLOYED?", isAccountDeployed) //...
 
 ---
 
+### getNFT
+
+Extracts information about the origin NFT that is paired with the Tokenbound account.
+
+**Returns** a Promise that resolves to a **TokenboundAccountNFT** object. The TokenboundAccountNFT object contains the following properties:
+
+- _tokenContract_: The token contract address
+- _tokenId_: The token ID
+- _chainId_: The chain ID
+
+```ts
+const nft = await client.getNFT({
+  accountAddress: "<account_address>",
+})
+
+const { tokenContract, tokenId, chainId } = nft
+
+console.log({ tokenContract, tokenId, chainId })
+```
+
+| Parameter          | Description                     | Type   |
+| ------------------ | ------------------------------- | ------ |
+| **accountAddress** | The Tokenbound account address. | string |
+
+---
+
 ### prepareExecuteCall
 
 **Returns** A Promise with prepared transaction to execute a call on a Tokenbound account. Can be sent via `sendTransaction` on an Ethers signer or via WalletClient.
@@ -137,12 +163,12 @@ const preparedCall = await tokenboundClient.prepareExecuteCall({
 console.log(preparedCall) //...
 ```
 
-| Parameter | Description                     | Type   |
-| --------- | ------------------------------- | ------ |
-| account   | The Tokenbound account address. | string |
-| to        | The recipient address.          | string |
-| value     | The value to send, in wei.      | bigint |
-| data      | The data to send.               | string |
+| Parameter   | Description                     | Type   |
+| ----------- | ------------------------------- | ------ |
+| **account** | The Tokenbound account address. | string |
+| **to**      | The recipient address.          | string |
+| **value**   | The value to send, in wei.      | bigint |
+| **data**    | The data to send.               | string |
 
 ---
 
@@ -169,29 +195,31 @@ console.log(executedCall) //...
 
 ---
 
-### getNFT
+### transferNFT
 
-Extracts information about the NFT paired with the Tokenbound account from the account bytecode.
+Transfer an NFT to a recipient from a Tokenbound account
 
-**Returns** a Promise that resolves to a **TokenboundAccountNFT** object. The TokenboundAccountNFT object contains the following properties:
+**Returns** a Promise that resolves to the transaction hash of the transfer
 
-- _tokenContract_: The token contract address
-- _tokenId_: The token ID
-- _chainId_: The chain ID
-
-```ts
-const nft = await client.getNFT({
-  accountAddress: "<account_address>",
+```typescript
+const transferNFT = await tokenboundClient.transferNFT({
+  account: "<account_address>",
+  tokenType: "ERC721",
+  tokenContract: "<nft_contract_address>",
+  tokenId: "<nft_token_id>",
+  recipientAddress: "<recipient_address>",
 })
 
-const { tokenContract, tokenId, chainId } = nft
-
-console.log({ tokenContract, tokenId, chainId })
+console.log(transferNFT) //...
 ```
 
-| Parameter          | Description                     | Type   |
-| ------------------ | ------------------------------- | ------ |
-| **accountAddress** | The Tokenbound account address. | string |
+| Parameter            | Description                       | Type   |
+| -------------------- | --------------------------------- | ------ |
+| **account**          | The Tokenbound account address.   | string |
+| **tokenType**        | Token type: 'ERC721' or 'ERC1155' | string |
+| **tokenContract**    | The recipient address.            | string |
+| **tokenId**          | The tokenId of the NFT.           | string |
+| **recipientAddress** | The recipient address.            | string |
 
 ---
 
