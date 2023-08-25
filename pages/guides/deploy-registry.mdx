@@ -1,25 +1,29 @@
-import { Tab, Tabs, Callout, Steps, Cards, Card } from "nextra/components"
+import { Tab, Tabs, Callout, Steps, Cards, Card } from "nextra/components";
 
 # Deploy Registry Contract
 
-Registry contract is supposed to be deployed once for a particular Chain. It has been deployed a bunch of chains already, see deployed addresses [here](/contracts/deployments).
-
 <Callout emoji="👉" type="info">
-You would only need to deploy the Registry contract if you're spinning up a test blockchain and trying to interact with TBAs (Tokenbound Accounts) on the local node OR if you want to enable TBAs for your new EVM chain.
+  This guide covers the deployment of the ERC-6551 Registry contract for the
+  purpose of interacting with TBAs (Tokenbound Accounts) on a local node OR if
+  you want to enable TBAs for the first time on a new EVM chain. Otherwise, you
+  may use the existing canonical ERC-6551 Registry contract.
 </Callout>
+
+The ERC-6551 Registry contract has already been deployed across several EVM networks. A list of deployed addresses can be found [here](/contracts/deployments).
 
 ### Pre-Requisites
 
 - foundry
 
-    If you do not have foundry already:
+  If you do not have foundry already:
 
-    ```bash
-    $ curl -L https://foundry.paradigm.xyz | bash
-    ```
-    ```bash
-    $ foundryup
-    ```
+  ```bash
+  $ curl -L https://foundry.paradigm.xyz | bash
+  ```
+
+  ```bash
+  $ foundryup
+  ```
 
 - terminal
 
@@ -27,15 +31,14 @@ You would only need to deploy the Registry contract if you're spinning up a test
 ### Clone the Reference repository
 
 ```bash
-$ gh repo clone erc6551/reference
+$ git clone https://github.com/erc6551/reference.git
 ```
-
-
 
 <Callout emoji="❗" type="error">
 Make sure you checkout on `v0.2.0` tag for the repository
 
-This is important because you wanna make sure that the address of Registry contract is the same as on any other EVM compatible chain. The current address that’s deployed on all chains is: `0x02101dfB77FDE026414827Fdc604ddAF224F0921`
+This is ensures that the address of Registry contract is the same as on any other EVM compatible chain. The current address that’s deployed on all chains is: `0x02101dfB77FDE026414827Fdc604ddAF224F0921`
+
 </Callout>
 
 ```bash
@@ -45,36 +48,41 @@ $ git checkout tags/v0.2.0
 <Callout emoji="⚠️" type="warning">
 
 If this address differs it would cause a tokenbound account associated with an NFT to have different addresses on different chains (we do not want that)
+
 </Callout>
 
 ### Run the test and build the contracts
+
 ```bash
 $ forge test
 ```
+
 ```bash
 $ forge build
 ```
 
 ### Compute the Registry address
+
 This is to make sure it matches with `0x02101dfB77FDE026414827Fdc604ddAF224F0921`
+
 ```bash
 $ forge script script/ComputeRegistryAddress.s.sol:ComputeRegistryAddress
 ```
 
 The output should be:
+
 <Callout emoji="👉" type="info">
-make sure the Address matches with `0x02101dfB77FDE026414827Fdc604ddAF224F0921`
+  make sure the Address matches with
+  `0x02101dfB77FDE026414827Fdc604ddAF224F0921`
 </Callout>
-```bash
-❯ forge script script/ComputeRegistryAddress.s.sol:ComputeRegistryAddress
-[⠒] Compiling...
-No files changed, compilation skipped
-Script ran successfully.
-Gas used: 24925
+```bash ❯ forge script script/ComputeRegistryAddress.s.sol:ComputeRegistryAddress
+[⠒] Compiling... No files changed, compilation skipped Script ran successfully. Gas
+used: 24925
 
 == Logs ==
-  0x02101dfB77FDE026414827Fdc604ddAF224F0921
-```
+0x02101dfB77FDE026414827Fdc604ddAF224F0921
+
+````
 ### Deploy
 Before we can deploy we need to provide `MAINNET_PRIVATE_KEY` env variable - set this to your test account’s private key
 
@@ -82,8 +90,10 @@ Before we can deploy we need to provide `MAINNET_PRIVATE_KEY` env variable - set
 <Tab>
 ```bash
 $ forge script --fork-url <RPC_URL> script/DeployRegistry.s.sol --broadcast
-```
+````
+
 replace `<RPC_URL>` with your chain's RPC endpoint
+
 </Tab>
 <Tab>
 In another terminal run anvil (anvil is just a local testnet node that is included in foundry)
@@ -93,16 +103,18 @@ $ anvil
 The registry requires a `CREATE2` deployer contract to be present on the chain before deployment. Since it’s a fresh chain we’d have to deploy it ourselves. (you won’t have to do it on Ethereum or any of its testnets)
 
 With `anvil` we can set a bytecode on a particular address:
+
 ```bash
 cast rpc anvil_setCode 0x4e59b44847b379578588920ca78fbf26c0b4956c 0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf3
 ```
 
 and now we can run the deploy script:
+
 ```bash
 forge script --fork-url http://127.0.0.1:8545 script/DeployRegistry.s.sol --broadcast
 ```
 
 </Tab>
 </Tabs>
-### fin.
+### You may now use the address of the deployed ERC-6551 Registry contract to read the address of and deploy Tokenboud Accounts.
 </Steps>
