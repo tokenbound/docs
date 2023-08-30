@@ -1,9 +1,4 @@
 {
   "installation": "Installation",
-  "methods": "Methods",
-  "---": {
-    "type": "separator"
-  },
-  "customAccounts": "Custom Implementations",
-  "iframe": "NFT iframe"
+  "methods": "API Reference"
 }

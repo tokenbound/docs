@@ -1,10 +1,21 @@
 {
-  "index": "Introduction",
-  "guides": "",
-  "faq": "FAQs",
-  "---": {
-    "type": "separator"
+  "--- Welcome": {
+    "type": "separator",
+    "title": "👋 Welcome"
   },
+  "index": "Introduction",
+  "glossary": "Glossary",
+  "faq": "FAQs",
+  "--- Getting Started": {
+    "type": "separator",
+    "title": "🚀 Getting Started"
+  },
+  "guides": "Guides",
+  "--- Resources": {
+    "type": "separator",
+    "title": "📝 Resources"
+  },
+  "iframe": "NFT iframe",
   "sdk": "SDK",
   "contracts": "Contracts",
   "eip": {
