@@ -2,9 +2,9 @@ import { Callout } from "nextra-theme-docs";
 
 # Custom Accounts
 
-Custom ERC-6551 account implementations are now supported in the SDK.
+It is possible to implement your own custom implementation of an [account](/contracts/account) and make the SDK point to your custom implementation instead of the default implementation.
 
-If you've deployed your own implementation, you can optionally pass custom configuration parameters when instantiating your TokenboundClient:
+To achieve that, you can optionally pass custom configuration parameters when instantiating your TokenboundClient:
 
 ```javascript
 import { TokenboundClient } from "@tokenbound/sdk";

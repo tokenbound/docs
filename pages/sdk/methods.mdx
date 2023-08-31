@@ -1,4 +1,4 @@
-# Methods
+# API Reference
 
 ### TokenboundClient
 
@@ -38,6 +38,28 @@ const tokenBoundAccount = tokenboundClient.getAccount({
 
 console.log(tokenBoundAccount) //0x1a2...3b4cd
 ```
+### Custom Account Implementation
+It is possible to implement your own custom implementation of an [account](/contracts/account) and make the SDK point to your custom implementation instead of the default implementation.
+
+```javascript
+import { TokenboundClient } from "@tokenbound/sdk";
+
+const tokenboundClient = new TokenboundClient({
+  signer: "<signer>",
+  chainId: "<chainId>",
+  implementationAddress: "<custom_implementation_address>",
+});
+
+// Custom implementation AND custom registry (uncommon for most implementations)
+const tokenboundClientWithCustomRegistry = new TokenboundClient({
+  signer: "<signer>",
+  chainId: "<chainId>",
+  implementationAddress: "<custom_implementation_address>",
+  registryAddress: "<custom_registry_address>",
+});
+```
+
+Read more [here](/guides/custom-accounts)
 
 ---
 
