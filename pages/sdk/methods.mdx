@@ -38,17 +38,19 @@ const tokenBoundAccount = tokenboundClient.getAccount({
 
 console.log(tokenBoundAccount) //0x1a2...3b4cd
 ```
+
 ### Custom Account Implementation
+
 It is possible to implement your own custom implementation of an [account](/contracts/account) and make the SDK point to your custom implementation instead of the default implementation.
 
 ```javascript
-import { TokenboundClient } from "@tokenbound/sdk";
+import { TokenboundClient } from "@tokenbound/sdk"
 
 const tokenboundClient = new TokenboundClient({
   signer: "<signer>",
   chainId: "<chainId>",
   implementationAddress: "<custom_implementation_address>",
-});
+})
 
 // Custom implementation AND custom registry (uncommon for most implementations)
 const tokenboundClientWithCustomRegistry = new TokenboundClient({
@@ -56,7 +58,7 @@ const tokenboundClientWithCustomRegistry = new TokenboundClient({
   chainId: "<chainId>",
   implementationAddress: "<custom_implementation_address>",
   registryAddress: "<custom_registry_address>",
-});
+})
 ```
 
 Read more [here](/guides/custom-accounts)
@@ -242,6 +244,58 @@ console.log(transferNFT) //...
 | **tokenContract**    | The recipient address.            | string |
 | **tokenId**          | The tokenId of the NFT.           | string |
 | **recipientAddress** | The recipient address.            | string |
+
+---
+
+### transferERC20
+
+Transfer ERC-20 tokens to a recipient from a Tokenbound account
+
+**Returns** a Promise that resolves to the transaction hash of the transfer
+
+```typescript
+const transferERC20 = await tokenboundClient.transferERC20({
+  account: "<tokenbound_account_address>",
+  amount: 0.1,
+  recipientAddress: "<recipient_address>",
+  erc20tokenAddress: "<erc20_token_address>",
+  erc20tokenDecimals: "<erc20_token_decimals>",
+})
+
+console.log(transferERC20) //...
+```
+
+| Parameter              | Description                                    | Type   |
+| ---------------------- | ---------------------------------------------- | ------ |
+| **account**            | The Tokenbound account address.                | string |
+| **amount**             | Amount, in decimal form (eg. 0.1 USDC).        | number |
+| **recipientAddress**   | The recipient address.                         | string |
+| **erc20tokenAddress**  | The ERC-20 token address.                      | string |
+| **erc20tokenDecimals** | The ERC-20 token decimal specification (1-18). | number |
+
+---
+
+### transferETH
+
+Transfer ETH to a recipient from a Tokenbound account
+
+**Returns** a Promise that resolves to the transaction hash of the transfer
+
+```typescript
+const transferETH = await tokenboundClient.transferETH({
+  account: "<tokenbound_account_address>",
+  amount: 0.01,
+  recipientAddress: "<recipient_address>",
+})
+
+console.log(transferERC20) //...
+```
+
+| Parameter            | Description                             | Type   |
+| -------------------- | --------------------------------------- | ------ |
+| **account**          | The Tokenbound account address.         | string |
+| **amount**           | Amount, in decimal form (eg. 0.01 ETH). | number |
+| **recipientAddress** | The recipient address.                  | string |
 
 ---
 
