@@ -71,19 +71,21 @@ $ forge script script/ComputeRegistryAddress.s.sol:ComputeRegistryAddress
 
 The output should be:
 
-<Callout emoji="👉" type="info">
-  make sure the Address matches with
-  `0x02101dfB77FDE026414827Fdc604ddAF224F0921`
-</Callout>
 ```bash ❯ forge script script/ComputeRegistryAddress.s.sol:ComputeRegistryAddress
 [⠒] Compiling... No files changed, compilation skipped Script ran successfully. Gas
 used: 24925
 
 == Logs ==
 0x02101dfB77FDE026414827Fdc604ddAF224F0921
+```
 
-````
+<Callout emoji="👉" type="info">
+  make sure the Address matches with
+  `0x02101dfB77FDE026414827Fdc604ddAF224F0921`
+</Callout>
+
 ### Deploy
+
 Before we can deploy we need to provide `MAINNET_PRIVATE_KEY` env variable - set this to your test account’s private key
 
 <Tabs items={["on any EVM compatible chain", "on Local node"]}>
