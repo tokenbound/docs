@@ -38,17 +38,19 @@ const tokenBoundAccount = tokenboundClient.getAccount({
 
 console.log(tokenBoundAccount) //0x1a2...3b4cd
 ```
+
 ### Custom Account Implementation
+
 It is possible to implement your own custom implementation of an [account](/contracts/account) and make the SDK point to your custom implementation instead of the default implementation.
 
 ```javascript
-import { TokenboundClient } from "@tokenbound/sdk";
+import { TokenboundClient } from "@tokenbound/sdk"
 
 const tokenboundClient = new TokenboundClient({
   signer: "<signer>",
   chainId: "<chainId>",
   implementationAddress: "<custom_implementation_address>",
-});
+})
 
 // Custom implementation AND custom registry (uncommon for most implementations)
 const tokenboundClientWithCustomRegistry = new TokenboundClient({
@@ -56,7 +58,7 @@ const tokenboundClientWithCustomRegistry = new TokenboundClient({
   chainId: "<chainId>",
   implementationAddress: "<custom_implementation_address>",
   registryAddress: "<custom_registry_address>",
-});
+})
 ```
 
 Read more [here](/guides/custom-accounts)
@@ -249,7 +251,7 @@ console.log(transferNFT) //...
 
 Deconstructs the bytecode of a Tokenbound account into its constituent parts.
 
-**Returns** a Promise that resolves to a **SegmentedERC1155Bytecode** object, or null if the account is not deployed. The **SegmentedERC1155Bytecode** object contains the following properties:
+**Returns** a Promise that resolves to a **SegmentedERC6551Bytecode** object, or null if the account is not deployed. The **SegmentedERC6551Bytecode** object contains the following properties:
 
 - **_erc1167Header_**: ERC-1167 Header
 - **_implementationAddress_**: The ERC-6551 implementation address
