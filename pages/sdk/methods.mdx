@@ -38,17 +38,19 @@ const tokenBoundAccount = tokenboundClient.getAccount({
 
 console.log(tokenBoundAccount) //0x1a2...3b4cd
 ```
+
 ### Custom Account Implementation
+
 It is possible to implement your own custom implementation of an [account](/contracts/account) and make the SDK point to your custom implementation instead of the default implementation.
 
 ```javascript
-import { TokenboundClient } from "@tokenbound/sdk";
+import { TokenboundClient } from "@tokenbound/sdk"
 
 const tokenboundClient = new TokenboundClient({
   signer: "<signer>",
   chainId: "<chainId>",
   implementationAddress: "<custom_implementation_address>",
-});
+})
 
 // Custom implementation AND custom registry (uncommon for most implementations)
 const tokenboundClientWithCustomRegistry = new TokenboundClient({
@@ -56,7 +58,7 @@ const tokenboundClientWithCustomRegistry = new TokenboundClient({
   chainId: "<chainId>",
   implementationAddress: "<custom_implementation_address>",
   registryAddress: "<custom_registry_address>",
-});
+})
 ```
 
 Read more [here](/guides/custom-accounts)
@@ -196,6 +198,8 @@ console.log(preparedCall) //...
 
 ### executeCall
 
+Arbitrary contract calls can be performed against any contract. This means any onchain action you can perform with your EOA wallet can be done with your NFT's Tokenbound account. You can mint or transfer NFTs, approve contracts, make and vote on DAO proposals, and much more.
+
 **Returns** a hash of the transaction that executed a call using a Tokenbound account.
 
 ```ts copy
@@ -203,7 +207,7 @@ const executedCall = await tokenboundClient.executeCall({
   account: "<account_address>",
   to: "<recipient_address>",
   value: "<wei_value>",
-  data: "<data>",
+  data: "<encoded_call_data>",
 })
 
 console.log(executedCall) //...
@@ -214,6 +218,36 @@ console.log(executedCall) //...
 | **account** | The Tokenbound account address. | string |
 | **to**      | The recipient address.          | string |
 | **value**   | The value to send, in wei.      | bigint |
+
+Here's a more robust example, where we see how to use your TBA to mint an NFT using Zora's [ERC721Drop contract](https://etherscan.io/address/0x7c74dfe39976dc395529c14e54a597809980e01c#code) by calling the contract's `purchase` function.
+
+```ts copy
+// Webb's First Deep Field (unlimited mint drop):
+// https://zora.co/collect/eth:0x28ee638f2fcb66b4106acab7efd225aeb2bd7e8d
+
+const zora721 = {
+  abi: zora721DropABI,
+  proxyContractAddress: getAddress(
+    "0x28ee638f2fcb66b4106acab7efd225aeb2bd7e8d"
+  ),
+  mintPrice: BigInt(0),
+  quantity: 2,
+  tbaAddress: getAddress("0xc33f0A7FcD69Ba00b4e980463199CD38E30d0E5c"),
+}
+
+const encodedMintFunctionData = encodeFunctionData({
+  abi: zora721.abi,
+  functionName: "purchase",
+  args: [BigInt(zora721.quantity)],
+})
+
+const mintToTBATxHash = await tokenboundClient.executeCall({
+  account: zora721.tbaAddress,
+  to: zora721.proxyContractAddress,
+  value: zora721.mintPrice * BigInt(zora721.quantity),
+  data: encodedMintFunctionData,
+})
+```
 
 ---
 
