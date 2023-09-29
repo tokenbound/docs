@@ -3,10 +3,17 @@
 This page lists all of the terms and their definitions that are used in these docs. Consider these as the building blocks of the Tokenbound Accounts system.
 
 #### TBA
-Short for Tokenbound Account. It is the account associated with a particular NFT. An NFT on a particular chain is uniquely identified as a contract address and token id pair. For example, one ERC721 contract can have multiple unique token IDs associated with it, and each token id will have a unique account associated with it. A TBA isn't generated, it's calculated. The address is deterministic and is calculated based on the NFT contract, the ID of the token and the [Account](/contracts/account) implementation
+
+Short for Tokenbound Account. This is the account associated with a particular NFT. An NFT on a particular chain is uniquely identified as a contract address and tokenId pair. For example, one ERC721 contract can have multiple unique token IDs associated with it, and each tokenId will have a unique account associated with it. A TBA isn't generated, it's calculated. The address is deterministic and is calculated based on the NFT contract, the ID of the token and the [Account](/contracts/account) implementation
+
 #### Registry Contract
-Presence of a [registry contract](/contracts/registry) on a particular chain makes it possible for that chain to support TBAs. This contracts holds the method to calculate address of a given NFT (contract, tokenID pair)
+
+The presence of a [registry contract](/contracts/registry) on a particular chain makes it possible for that chain to support TBAs. This contract holds the method to calculate the address of a given NFT (contract, tokenID pair)
+
 #### Account
-Implementation of the TBA. We provide a [default Account implementation](/contracts/account) which can be overridden if required. Note that address of a TBA would change if the implementation contract is changed.
+
+Implementation of the TBA. We provide a [default Account implementation](/contracts/account) which can be overridden if required. Note that the address of a TBA would change if the implementation contract is changed.
+
 #### TBA Explorer
-We built [tokenbound.org](https://tokenbound.org) to provide a way for anyone to view the wallet associated with any NFT. Easiest way to view any NFT's account is to replace `opensea.io` with `tokenbound.org` and view the assets.
+
+We built [tokenbound.org](https://tokenbound.org) to provide a way for anyone to view the wallet associated with any NFT. The easiest way to view any NFT's account is to replace `opensea.io` with `tokenbound.org` and view the assets.
