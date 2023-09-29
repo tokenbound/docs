@@ -213,11 +213,12 @@ const executedCall = await tokenboundClient.executeCall({
 console.log(executedCall) //...
 ```
 
-| Parameter   | Description                     | Type   |
-| ----------- | ------------------------------- | ------ |
-| **account** | The Tokenbound account address. | string |
-| **to**      | The recipient address.          | string |
-| **value**   | The value to send, in wei.      | bigint |
+| Parameter           | Description                     | Type       |
+| ------------------- | ------------------------------- | ---------- |
+| **account**         | The Tokenbound account address. | string     |
+| **to**              | The recipient address.          | string     |
+| **value**           | The value to send, in wei.      | bigint     |
+| **data** (optional) | The ABI-encoded call data       | 0x{string} |
 
 Here's a more robust example, where we see how to use your TBA to mint an NFT using Zora's [ERC721Drop contract](https://etherscan.io/address/0x7c74dfe39976dc395529c14e54a597809980e01c#code) by calling the contract's `purchase` function.
 
