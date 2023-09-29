@@ -1,4 +1,4 @@
-import { Tab, Tabs, Callout, Steps, Cards, Card } from "nextra/components";
+import { Tab, Tabs, Callout, Steps, Cards, Card } from "nextra/components"
 
 # Deploy Registry Contract
 
@@ -71,19 +71,21 @@ $ forge script script/ComputeRegistryAddress.s.sol:ComputeRegistryAddress
 
 The output should be:
 
-<Callout emoji="👉" type="info">
-  make sure the Address matches with
-  `0x02101dfB77FDE026414827Fdc604ddAF224F0921`
-</Callout>
 ```bash ❯ forge script script/ComputeRegistryAddress.s.sol:ComputeRegistryAddress
 [⠒] Compiling... No files changed, compilation skipped Script ran successfully. Gas
 used: 24925
 
 == Logs ==
 0x02101dfB77FDE026414827Fdc604ddAF224F0921
+```
 
-````
+<Callout emoji="👉" type="info">
+  make sure the Address matches with
+  `0x02101dfB77FDE026414827Fdc604ddAF224F0921`
+</Callout>
+
 ### Deploy
+
 Before we can deploy we need to provide `MAINNET_PRIVATE_KEY` env variable - set this to your test account’s private key
 
 <Tabs items={["on any EVM compatible chain", "on Local node"]}>
@@ -116,5 +118,5 @@ forge script --fork-url http://127.0.0.1:8545 script/DeployRegistry.s.sol --broa
 
 </Tab>
 </Tabs>
-### You may now use the address of the deployed ERC-6551 Registry contract to read the address of and deploy Tokenboud Accounts.
+### You may now use the address of the deployed ERC-6551 Registry contract to read the address of and deploy Tokenbound Accounts.
 </Steps>
