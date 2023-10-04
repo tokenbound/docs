@@ -2,7 +2,7 @@
 
 ### TokenboundClient
 
-The TokenboundClient is instantiated with an object containing at most two parameters:
+The TokenboundClient is instantiated with an object containing two parameters:
 `chainId` (mandatory)
 `walletClient` (optional) OR
 `signer` (optional)
@@ -47,21 +47,42 @@ It is possible to implement your own custom implementation of an [account](/cont
 import { TokenboundClient } from "@tokenbound/sdk"
 
 const tokenboundClient = new TokenboundClient({
-  signer: "<signer>",
+  walletClient: "<walletClient>",
   chainId: "<chainId>",
   implementationAddress: "<custom_implementation_address>",
 })
 
 // Custom implementation AND custom registry (uncommon for most implementations)
 const tokenboundClientWithCustomRegistry = new TokenboundClient({
-  signer: "<signer>",
+  walletClient: "<walletClient>",
   chainId: "<chainId>",
   implementationAddress: "<custom_implementation_address>",
   registryAddress: "<custom_registry_address>",
 })
 ```
 
-Read more [here](/guides/custom-accounts)
+### Custom PublicClient or RPC URL
+
+If using viem, you can specify a custom PublicClient RPC URL for use by the TokenboundClient's internal PublicClient.
+
+Alternately, you can simply configure and pass your own publicClient. This option was added to enable internal testing on local chains.
+
+These options won't be useful to most users.
+
+| Parameter              |          |
+| ---------------------- | -------- |
+| **publicClientRPCUrl** | optional |
+| **publicClient**       | optional |
+
+```javascript
+import { TokenboundClient } from "@tokenbound/sdk"
+
+const tokenboundClient = new TokenboundClient({
+  walletClient: "<walletClient>",
+  chainId: "<chainId>",
+  publicClientRPCUrl: "<custom_rpc_url>",
+})
+```
 
 ---
 
@@ -284,7 +305,7 @@ console.log(transferNFT) //...
 
 Deconstructs the bytecode of a Tokenbound account into its constituent parts.
 
-**Returns** a Promise that resolves to a **SegmentedERC1155Bytecode** object, or null if the account is not deployed. The **SegmentedERC1155Bytecode** object contains the following properties:
+**Returns** a Promise that resolves to a **SegmentedERC6551Bytecode** object, or null if the account is not deployed. The **SegmentedERC6551Bytecode** object contains the following properties:
 
 - **_erc1167Header_**: ERC-1167 Header
 - **_implementationAddress_**: The ERC-6551 implementation address
@@ -295,7 +316,7 @@ Deconstructs the bytecode of a Tokenbound account into its constituent parts.
 - **_chainId_**: The chain ID
 
 ```ts
-const segmentedBytecode = await client.deconstructBytecode({
+const segmentedBytecode = await tokenboundClient.deconstructBytecode({
   accountAddress: "<account_address>",
 })
 
