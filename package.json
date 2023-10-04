@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "clean": "rm -rf node_modules .next",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
