@@ -1,6 +1,5 @@
 {
+  "deployments": "Deployed Addresses",
   "registry": "ERC6551Registry",
-  "account": "Account",
-  "deployments-v2": "V2 Contract Addresses",
-  "deployments-v3": "V3 Contract Addresses"
+  "account": "Account"
 }

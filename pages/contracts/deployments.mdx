@@ -1,0 +1,147 @@
+import { Callout, Tabs, Tab } from "nextra-theme-docs";
+
+# Deployed Addresses
+
+The ERC-6551 registry and Tokenbound account implementation contracts have been deployed to the same addresses across multiple chains.
+
+<Tabs items={["v0.3.1 (latest)", "v0.3.0", "v0.2.0"]}>
+  <Tab>
+
+**ERC-6551 Registry**
+
+| EVM Network  | Chain ID | Registry Address                                                                                                                      |
+| ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Goerli       | 5        | [0x000000006551c19487814612e58FE06813775758](https://goerli.etherscan.io/address/0x000000006551c19487814612e58FE06813775758)          |
+| Mumbai       | 80001    | [0x000000006551c19487814612e58FE06813775758](https://mumbai.polygonscan.com/address/0x000000006551c19487814612e58FE06813775758)       |
+| OP Goerli    | 420      | [0x000000006551c19487814612e58FE06813775758](https://goerli-optimism.etherscan.io/address/0x000000006551c19487814612e58FE06813775758) |
+| Base Goerli  | 84531    | [0x000000006551c19487814612e58FE06813775758](https://goerli.basescan.org/address/0x000000006551c19487814612e58FE06813775758)          |
+| Linea Goerli | 59140    | [0x000000006551c19487814612e58FE06813775758](https://goerli.lineascan.build/address/0x000000006551c19487814612e58FE06813775758)       |
+| Ethereum     | 1        | [0x000000006551c19487814612e58FE06813775758](https://etherscan.io/address/0x000000006551c19487814612e58FE06813775758)                 |
+| Polygon      | 137      | [0x000000006551c19487814612e58FE06813775758](https://polygonscan.com/address/0x000000006551c19487814612e58FE06813775758)              |
+| Optimism     | 10       | [0x000000006551c19487814612e58FE06813775758](https://optimistic.etherscan.io/address/0x000000006551c19487814612e58FE06813775758)      |
+| Base         | 8453     | [0x000000006551c19487814612e58FE06813775758](https://basescan.org/address/0x000000006551c19487814612e58FE06813775758)                 |
+| Linea        | 59144    | [0x000000006551c19487814612e58FE06813775758](https://lineascan.build/address/0x000000006551c19487814612e58FE06813775758)              |
+
+**Tokenbound Account Proxy**
+
+Use this address as the `implementation` parameter when calling `createAccount` on the registry
+
+| EVM Network  | Chain ID | Registry Address                                                                                                                      |
+| ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Goerli       | 5        | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://goerli.etherscan.io/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)          |
+| Mumbai       | 80001    | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://mumbai.polygonscan.com/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)       |
+| OP Goerli    | 420      | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://goerli-optimism.etherscan.io/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F) |
+| Base Goerli  | 84531    | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://goerli.basescan.org/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)          |
+| Linea Goerli | 59140    | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://goerli.lineascan.build/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)       |
+| Ethereum     | 1        | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://etherscan.io/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)                 |
+| Polygon      | 137      | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://polygonscan.com/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)              |
+| Optimism     | 10       | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://optimistic.etherscan.io/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)      |
+| Base         | 8453     | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://basescan.org/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)                 |
+| Linea        | 59144    | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://lineascan.build/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)              |
+
+**Tokenbound Account Implementation**
+Use this address as the `implementation` parameter when calling `initialize` on a created account
+
+| EVM Network  | Chain ID | Registry Address                                                                                                                      |
+| ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Goerli       | 5        | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://goerli.etherscan.io/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)          |
+| Mumbai       | 80001    | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://mumbai.polygonscan.com/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)       |
+| OP Goerli    | 420      | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://goerli-optimism.etherscan.io/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F) |
+| Base Goerli  | 84531    | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://goerli.basescan.org/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)          |
+| Linea Goerli | 59140    | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://goerli.lineascan.build/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)       |
+| Ethereum     | 1        | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://etherscan.io/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)                 |
+| Polygon      | 137      | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://polygonscan.com/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)              |
+| Optimism     | 10       | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://optimistic.etherscan.io/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)      |
+| Base         | 8453     | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://basescan.org/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)                 |
+| Linea        | 59144    | [0x55266d75D1a14E4572138116aF39863Ed6596E7F](https://lineascan.build/address/0x55266d75D1a14E4572138116aF39863Ed6596E7F)              |
+
+  </Tab>
+  <Tab>
+
+**ERC-6551 Registry**
+
+| EVM Network  | Chain ID | Registry Address                                                                                                                      |
+| ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Goerli       | 5        | [0x284be69BaC8C983a749956D7320729EB24bc75f9](https://goerli.etherscan.io/address/0x284be69BaC8C983a749956D7320729EB24bc75f9)          |
+| Mumbai       | 80001    | [0x284be69BaC8C983a749956D7320729EB24bc75f9](https://mumbai.polygonscan.com/address/0x284be69BaC8C983a749956D7320729EB24bc75f9)       |
+| OP Goerli    | 420      | [0x284be69BaC8C983a749956D7320729EB24bc75f9](https://goerli-optimism.etherscan.io/address/0x284be69BaC8C983a749956D7320729EB24bc75f9) |
+| Base Goerli  | 84531    | [0x284be69BaC8C983a749956D7320729EB24bc75f9](https://goerli.basescan.org/address/0x284be69BaC8C983a749956D7320729EB24bc75f9)          |
+| Linea Goerli | 59140    | [0x284be69BaC8C983a749956D7320729EB24bc75f9](https://goerli.lineascan.build/address/0x284be69BaC8C983a749956D7320729EB24bc75f9)       |
+| Ethereum     | 1        | [0x284be69BaC8C983a749956D7320729EB24bc75f9](https://etherscan.io/address/0x284be69BaC8C983a749956D7320729EB24bc75f9)                 |
+| Polygon      | 137      | [0x284be69BaC8C983a749956D7320729EB24bc75f9](https://polygonscan.com/address/0x284be69BaC8C983a749956D7320729EB24bc75f9)              |
+| Optimism     | 10       | [0x284be69BaC8C983a749956D7320729EB24bc75f9](https://optimistic.etherscan.io/address/0x284be69BaC8C983a749956D7320729EB24bc75f9)      |
+| Base         | 8453     | [0x284be69BaC8C983a749956D7320729EB24bc75f9](https://basescan.org/address/0x284be69BaC8C983a749956D7320729EB24bc75f9)                 |
+| Linea        | 59144    | [0x284be69BaC8C983a749956D7320729EB24bc75f9](https://lineascan.build/address/0x284be69BaC8C983a749956D7320729EB24bc75f9)              |
+
+**Tokenbound Account Proxy**
+
+Use this address as the `implementation` parameter when calling `createAccount` on the registry
+
+| EVM Network  | Chain ID | Registry Address                                                                                                                      |
+| ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Goerli       | 5        | [0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f](https://goerli.etherscan.io/address/0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f)          |
+| Mumbai       | 80001    | [0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f](https://mumbai.polygonscan.com/address/0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f)       |
+| OP Goerli    | 420      | [0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f](https://goerli-optimism.etherscan.io/address/0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f) |
+| Base Goerli  | 84531    | [0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f](https://goerli.basescan.org/address/0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f)          |
+| Linea Goerli | 59140    | [0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f](https://goerli.lineascan.build/address/0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f)       |
+| Ethereum     | 1        | [0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f](https://etherscan.io/address/0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f)                 |
+| Polygon      | 137      | [0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f](https://polygonscan.com/address/0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f)              |
+| Optimism     | 10       | [0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f](https://optimistic.etherscan.io/address/0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f)      |
+| Base         | 8453     | [0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f](https://basescan.org/address/0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f)                 |
+| Linea        | 59144    | [0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f](https://lineascan.build/address/0xABF81898FEA21aAa5EE27F6fA0398a217a29bE9f)              |
+
+**Tokenbound Account Implementation**
+Use this address as the `implementation` parameter when calling `initialize` on a created account
+
+| EVM Network  | Chain ID | Registry Address                                                                                                                      |
+| ------------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Goerli       | 5        | [0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a](https://goerli.etherscan.io/address/0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a)          |
+| Mumbai       | 80001    | [0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a](https://mumbai.polygonscan.com/address/0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a)       |
+| OP Goerli    | 420      | [0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a](https://goerli-optimism.etherscan.io/address/0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a) |
+| Base Goerli  | 84531    | [0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a](https://goerli.basescan.org/address/0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a)          |
+| Linea Goerli | 59140    | [0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a](https://goerli.lineascan.build/address/0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a)       |
+| Ethereum     | 1        | [0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a](https://etherscan.io/address/0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a)                 |
+| Polygon      | 137      | [0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a](https://polygonscan.com/address/0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a)              |
+| Optimism     | 10       | [0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a](https://optimistic.etherscan.io/address/0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a)      |
+| Base         | 8453     | [0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a](https://basescan.org/address/0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a)                 |
+| Linea        | 59144    | [0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a](https://lineascan.build/address/0xBf7F4beb68b960AE198a15f4f50247f4Fd20E21a)              |
+
+  </Tab>
+  <Tab>
+  
+**ERC-6551 Registry**
+
+| EVM Network  | Chain ID | Registry Address                                                                                                                 |
+| ------------ | -------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| Sepolia      | 11155111 | [0x02101dfB77FDE026414827Fdc604ddAF224F0921](https://sepolia.etherscan.io/address/0x02101dfB77FDE026414827Fdc604ddAF224F0921)    |
+| Goerli       | 5        | [0x02101dfB77FDE026414827Fdc604ddAF224F0921](https://goerli.etherscan.io/address/0x02101dfB77FDE026414827Fdc604ddAF224F0921)     |
+| Mumbai       | 80001    | [0x02101dfB77FDE026414827Fdc604ddAF224F0921](https://mumbai.polygonscan.com/address/0x02101dfB77FDE026414827Fdc604ddAF224F0921)  |
+| Mainnet      | 1        | [0x02101dfB77FDE026414827Fdc604ddAF224F0921](https://etherscan.io/address/0x02101dfB77FDE026414827Fdc604ddAF224F0921)            |
+| Optimism     | 10       | [0x02101dfB77FDE026414827Fdc604ddAF224F0921](https://optimistic.etherscan.io/address/0x02101dfB77FDE026414827Fdc604ddAF224F0921) |
+| Polygon      | 137      | [0x02101dfB77FDE026414827Fdc604ddAF224F0921](https://polygonscan.com/address/0x02101dfB77FDE026414827Fdc604ddAF224F0921)         |
+| Gnosis Chain | 100      | [0x02101dfB77FDE026414827Fdc604ddAF224F0921](https://gnosisscan.io/address/0x02101dfB77FDE026414827Fdc604ddAF224F0921)           |
+| Base         | 8453     | [0x02101dfB77FDE026414827Fdc604ddAF224F0921](https://basescan.org/address/0x02101dfB77FDE026414827Fdc604ddAF224F0921)            |
+| Arbitrum     | 42161    | [0x02101dfB77FDE026414827Fdc604ddAF224F0921](https://arbiscan.io/address/0x02101dfb77fde026414827fdc604ddaf224f0921)             |
+
+**Tokenbound Account Implementation**
+
+| EVM Network | Account Implementation Address                                                                                                  |
+| ----------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Sepolia     | [0x2d25602551487c3f3354dd80d76d54383a243358](https://sepolia.etherscan.io/address/0x2d25602551487c3f3354dd80d76d54383a243358)   |
+| Goerli      | [0x2d25602551487c3f3354dd80d76d54383a243358](https://goerli.etherscan.io/address/0x2d25602551487c3f3354dd80d76d54383a243358)    |
+| Mumbai      | [0x2d25602551487c3f3354dd80d76d54383a243358](https://mumbai.polygonscan.com/address/0x2d25602551487c3f3354dd80d76d54383a243358) |
+| Mainnet     | [0x2d25602551487c3f3354dd80d76d54383a243358](https://etherscan.io/address/0x2d25602551487c3f3354dd80d76d54383a243358)           |
+| Optimism    | [0x2d25602551487c3f3354dd80d76d54383a243358](https://optimistic.com/address/0x2d25602551487c3f3354dd80d76d54383a243358)         |
+| Polygon     | [0x2d25602551487c3f3354dd80d76d54383a243358](https://polygonscan.com/address/0x2d25602551487c3f3354dd80d76d54383a243358)        |
+
+  </Tab>
+</Tabs>
+
+---
+
+<Callout emoji="✍🏽">
+  **Tokenbound** is a suite of open source tools for building with
+  [ERC-6551](https://ethereum-magicians.org/t/erc-6551-non-fungible-token-bound-accounts/).
+  These docs are still a work in progress. In the meantime, feel free to join
+  the [working group](https://t.me/tokenbound) to learn more.
+</Callout>
