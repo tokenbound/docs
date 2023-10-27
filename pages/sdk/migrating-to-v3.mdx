@@ -8,9 +8,9 @@ There are a few key changes you'll want to be aware of if you're migrating from 
 
 ### Custom Implementation Addresses + Versioning
 
-If your app uses the [standard Tokenbound V2 implementation →](https://docs.tokenbound.org/contracts/deployments-v2), you'll need to instantiate the `TokenboundClient` with the `version` parameter set to use V2:
+If your app uses the standard Tokenbound V2 implementation [see 0.2.0 →](https://docs.tokenbound.org/contracts/deployments), you'll need to instantiate the `TokenboundClient` with the `version` parameter set to use V2:
 
-###### Basic V2:
+**Basic V2:**
 
 ```ts copy
 import { TokenboundClient, TBVersion } from "@tokenbound/sdk"
@@ -21,9 +21,9 @@ const tokenboundClient = new TokenboundClient({
 })
 ```
 
-If your app uses a custom account implementation based on V2 contracts (eg. not one of the [V2 addresses →](https://docs.tokenbound.org/contracts/deployments-v2) ), you'll need to pass both the `version` and `implementationAddress` parameters when instantiating your TokenboundClient: :
+If your app uses a custom account implementation based on V2 contracts (eg. not one of the [deployed 0.2.0 addresses →](https://docs.tokenbound.org/contracts/deployments) ), you'll need to pass both the `version` and `implementationAddress` parameters when instantiating your TokenboundClient: :
 
-###### V2 with custom `implementationAddress`:
+**V2 with custom `implementationAddress`:**
 
 ```ts copy
 import { TokenboundClient, TBVersion } from "@tokenbound/sdk"
@@ -52,7 +52,7 @@ const createdAccount = await tokenboundClient.createAccount({...})
 const { account, txHash } = await tokenboundClient.createAccount({...})
 ```
 
-### createAccount + getAccount methods with customImplementation parameters
+### createAccount + getAccount with customImplementation parameters
 
 Previously, we allowed for a custom `implementationAddress` and/or `registryAddress` to be specified directly on the `getAccount` and `createAccount` methods. These parameters have been removed. You can still specify each of these parameters when instantiating the TokenboundClient for the same effect.
 
