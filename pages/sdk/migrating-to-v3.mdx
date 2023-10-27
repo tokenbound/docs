@@ -8,7 +8,7 @@ There are a few key changes you'll want to be aware of if you're migrating from 
 
 ### Custom Implementation Addresses + Versioning
 
-If your app uses the [standard Tokenbound V2 implementation →](https://docs.tokenbound.org/contracts/deployments-v2), you'll need to instantiate the `TokenboundClient` with the `version` parameter set to use V2:
+If your app uses the [standard Tokenbound V2 (0.2.0) implementation →](https://docs.tokenbound.org/contracts/deployments), you'll need to instantiate the `TokenboundClient` with the `version` parameter set to use V2:
 
 ###### Basic V2:
 
@@ -21,7 +21,7 @@ const tokenboundClient = new TokenboundClient({
 })
 ```
 
-If your app uses a custom account implementation based on V2 contracts (eg. not one of the [V2 addresses →](https://docs.tokenbound.org/contracts/deployments-v2) ), you'll need to pass both the `version` and `implementationAddress` parameters when instantiating your TokenboundClient: :
+If your app uses a custom account implementation based on V2 contracts (eg. not one of the [V2 (0.2.0) addresses →](https://docs.tokenbound.org/contracts/deployments) ), you'll need to pass both the `version` and `implementationAddress` parameters when instantiating your TokenboundClient: :
 
 ###### V2 with custom `implementationAddress`:
 
