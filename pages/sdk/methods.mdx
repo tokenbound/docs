@@ -76,7 +76,11 @@ The TokenboundClient enables creation of and interaction with Tokenbound account
 
 Prepares an account creation transaction to be submitted via `sendTransaction`
 
-**Returns** the prepared transaction to create a Tokenbound account for a given token contract and token ID.
+**Returns** a promise resolving to a prepared transaction that can be used to create a Tokenbound account for a given token contract and token ID.
+
+When using the standard V3 implementation, this will be a `MultiCallTx` that will create and initialize the account in one pass. If using a custom account implementation with V3, a basic prepared transaction will be returned in the form `{to, value, data}`, and the created account will need to be initialized in a second step.
+
+If using the legacy V2 implementation, the return will be a standard object of the form `{to, value, data}`, and account initialization is handled for you.
 
 ```typescript
 const preparedAccount = await tokenboundClient.prepareCreateAccount({
