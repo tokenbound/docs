@@ -353,7 +353,7 @@ const transferETH = await tokenboundClient.transferETH({
   recipientAddress: '<recipient_address>',
 })
 
-console.log(transferERC20) //...
+console.log(transferETH) //...
 ```
 
 | Parameter            | Description                             | Type   |
@@ -457,7 +457,7 @@ const signedRawUint8Message = await tokenboundClient.signMessage({
   message: { raw: uint8ArrayMessage },
 })
 
-console.log(signedUint8Message)
+console.log(signedRawUint8Message)
 ```
 
 | Parameter   | Description               | Type                     |
