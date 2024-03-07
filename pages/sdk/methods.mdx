@@ -22,7 +22,8 @@ For instructions about using a **Custom Account Implementation** and/or a **Lega
 If you're using one of the [standard V2/V3 ERC-6551 contract deployments →](https://docs.tokenbound.org/contracts/deployments), you can simply pass the`chainId`. This will set `Chain` internally using imports from [`viem/chains`](https://viem.sh/docs/clients/chains.html). To keep the bundle size to a minimum, only standard chains are included in the SDK package.
 
 ```ts copy
-import { useAccount, WalletClient } from 'wagmi'
+import { useAccount } from 'wagmi'
+import { WalletClient } from "viem"
 import { TokenboundClient } from '@tokenbound/sdk'
 
 const { address } = useAccount()
