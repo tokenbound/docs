@@ -223,12 +223,13 @@ const preparedExecution = await tokenboundClient.prepareExecution({
 console.log(preparedExecution) //...
 ```
 
-| Parameter   | Description                          | Type   |
-| ----------- | ------------------------------------ | ------ |
-| **account** | The Tokenbound account address.      | string |
-| **to**      | The contract address.                | string |
-| **value**   | The value to send, in wei.           | bigint |
-| **data**    | The ABI-encoded call data (optional) | string |
+| Parameter      | Description                                                  | Type   |
+| -----------    | ------------------------------------                         | ------ |
+| **account**    | The Tokenbound account address.                              | string |
+| **to**         | The contract address.                                        | string |
+| **value**      | The value to send, in wei.                                   | bigint |
+| **data** (optional)      | The ABI-encoded call data                         | string |
+| **chainId** (optional)    | The ID of the chain the transaction should be executed on (optional). If supplied, this will send a cross-chain transaction from the TBA via a bridge | string |
 
 ---
 
@@ -257,6 +258,7 @@ console.log(executedCall)
 | **to**              | The contract address.           | string       |
 | **value**           | The value to send, in wei.      | bigint       |
 | **data** (optional) | The ABI-encoded call data.      | `0x{string}` |
+| **chainId** (optional)    | The ID of the chain the transaction should be executed on (optional). If supplied, this will send a cross-chain transaction from the TBA via a bridge | string |
 
 Here's a more robust example, where we see how to use your TBA to mint an NFT using Zora's [ERC721Drop contract](https://etherscan.io/address/0x7c74dfe39976dc395529c14e54a597809980e01c#code) by calling the contract's `purchase` function.
 
@@ -336,6 +338,8 @@ console.log(transferNFT) //...
 | **tokenId**          | The tokenId of the NFT.                   | string |
 | **recipientAddress** | The recipient address or ENS.             | string |
 | **amount**           | The number of tokens to send (1155 only). | number |
+| **chainId** (optional)    | The ID of the chain the transaction should be executed on (optional). If supplied, this will send a cross-chain transaction from the TBA via a bridge | string |
+
 
 ---
 
@@ -360,6 +364,7 @@ console.log(transferERC20) //...
 | **account**          | The Tokenbound account address.         | string |
 | **amount**           | Amount, in decimal form (eg. 0.01 ETH). | number |
 | **recipientAddress** | The recipient address or ENS.           | string |
+| **chainId** (optional)    | The ID of the chain the transaction should be executed on (optional). If supplied, this will send a cross-chain transaction from the TBA via a bridge | string |
 
 ---
 
@@ -388,6 +393,7 @@ console.log(transferERC20) //...
 | **recipientAddress**   | The recipient address or ENS.                  | string |
 | **erc20tokenAddress**  | The ERC-20 token address.                      | string |
 | **erc20tokenDecimals** | The ERC-20 token decimal specification (1-18). | number |
+| **chainId** (optional)    | The ID of the chain the transaction should be executed on (optional). If supplied, this will send a cross-chain transaction from the TBA via a bridge | string |
 
 ---
 
@@ -412,8 +418,8 @@ const segmentedBytecode = await tokenboundClient.deconstructBytecode({
 
 console.log(segmentedBytecode)
 ```
-
 | Parameter          | Description                     | Type   |
+
 | ------------------ | ------------------------------- | ------ |
 | **accountAddress** | The Tokenbound account address. | string |
 
