@@ -35,19 +35,19 @@ $ git clone https://github.com/erc6551/reference.git
 ```
 
 <Callout emoji="❗" type="error">
-Make sure you checkout on `v0.2.0` tag for the repository
+Make sure you checkout on `v0.3.1` tag for the repository
 
-This is ensures that the address of Registry contract is the same as on any other EVM compatible chain. The current address that’s deployed on all chains is: `0x02101dfB77FDE026414827Fdc604ddAF224F0921`
+This is ensures that the address of Registry contract is the same as on any other EVM compatible chain. The current address that’s deployed on all chains is: `0x000000006551c19487814612e58FE06813775758`
 
 </Callout>
 
 ```bash
-$ git checkout tags/v0.2.0
+$ git checkout tags/v0.3.1
 ```
 
 <Callout emoji="⚠️" type="warning">
 
-If this address differs it would cause a tokenbound account associated with an NFT to have different addresses on different chains (we do not want that)
+If this address differs it would cause a tokenbound account associated with an NFT to have different addresses on different chains
 
 </Callout>
 
@@ -63,7 +63,7 @@ $ forge build
 
 ### Compute the Registry address
 
-This is to make sure it matches with `0x02101dfB77FDE026414827Fdc604ddAF224F0921`
+This is to make sure it matches with `0x000000006551c19487814612e58FE06813775758`
 
 ```bash
 $ forge script script/ComputeRegistryAddress.s.sol:ComputeRegistryAddress
@@ -76,12 +76,12 @@ The output should be:
 used: 24925
 
 == Logs ==
-0x02101dfB77FDE026414827Fdc604ddAF224F0921
+0x000000006551c19487814612e58FE06813775758
 ```
 
 <Callout emoji="👉" type="info">
   make sure the Address matches with
-  `0x02101dfB77FDE026414827Fdc604ddAF224F0921`
+  `0x000000006551c19487814612e58FE06813775758`
 </Callout>
 
 ### Deploy
