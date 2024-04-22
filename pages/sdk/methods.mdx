@@ -19,7 +19,9 @@ For instructions about using a **Custom Account Implementation** and/or a **Lega
 
 ### Standard configuration
 
-If you're using one of the [standard V2/V3 ERC-6551 contract deployments →](https://docs.tokenbound.org/contracts/deployments), you can simply pass the`chainId`. This will set `Chain` internally using imports from [`viem/chains`](https://viem.sh/docs/clients/chains.html). To keep the bundle size to a minimum, only standard chains are included in the SDK package.
+If you're using one of the [standard V2/V3 ERC-6551 contract deployments →](https://docs.tokenbound.org/contracts/deployments), you can simply pass the`chainId`. This will set `Chain` internally using imports from [`viem/chains`](https://viem.sh/docs/clients/chains.html).
+
+The ecosystem of EVM-compatible chains has exploded in recent years, so to keep the bundle size to a minimum, only standard chains are included in the SDK package. EVM-compatible chains that aren't in the list can be used by [passing a custom chain parameter →](#custom-chain).
 
 ```ts copy
 import { useAccount } from 'wagmi'
@@ -419,8 +421,8 @@ const segmentedBytecode = await tokenboundClient.deconstructBytecode({
 
 console.log(segmentedBytecode)
 ```
-| Parameter          | Description                     | Type   |
 
+| Parameter          | Description                     | Type   |
 | ------------------ | ------------------------------- | ------ |
 | **accountAddress** | The Tokenbound account address. | string |
 
