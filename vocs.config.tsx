@@ -1,12 +1,29 @@
+import React from "react";
 import { defineConfig } from "vocs";
 
 export default defineConfig({
+  titleTemplate: "%s - Tokenbound Documentation",
+  head: (
+    <>
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://docs.tokenbound.org" />
+      <meta property="og:title" content="Tokenbound Documentation" />
+      <meta
+        property="og:description"
+        content="Open-source tooling for ERC-6551 Token Bound Accounts"
+      />
+    </>
+  ),
   iconUrl: "/favicon.ico",
   logoUrl: {
     dark: "/tokenbound-light.svg",
     light: "/tokenbound-dark.svg",
   },
   title: "Tokenbound",
+  editLink: {
+    pattern: "https://github.com/tokenbound/docs/edit/main/docs/pages/:path",
+    text: "Edit on GitHub",
+  },
   topNav: [
     { text: "ERC-6551", link: "https://eips.ethereum.org/EIPS/eip-6551" },
     { text: "Showcase", link: "/showcase", match: "/showcase" },
