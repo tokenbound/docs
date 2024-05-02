@@ -1,0 +1,71 @@
+# Migrating to V3
+
+We've made every effort to maintain backwards compatibility with deployed V2 contracts, and for the most part you shouldn't need to change much to get started with ERC-6551 development using the new contracts. That said, V3 is a big release and we're taking the opportunity to do a little bit of cleanup to make the SDK more flexible and easier to test. Some of these changes will also make development easier for the community.
+
+There are a few key changes you'll want to be aware of if you're migrating from V2.
+
+## Breaking Changes
+
+### Custom Implementation Addresses + Versioning
+
+If your app uses the standard Tokenbound V2 implementation [see 0.2.0 →](https://docs.tokenbound.org/contracts/deployments), you'll need to instantiate the `TokenboundClient` with the `version` parameter set to use V2:
+
+**Basic V2:**
+
+```ts copy
+import { TokenboundClient, TBVersion } from "@tokenbound/sdk"
+const tokenboundClient = new TokenboundClient({
+  walletClient,
+  chainId: 1,
+  version: TBVersion.V2,
+})
+```
+
+If your app uses a custom account implementation based on V2 contracts (eg. not one of the [deployed 0.2.0 addresses →](https://docs.tokenbound.org/contracts/deployments) ), you'll need to pass both the `version` and `implementationAddress` parameters when instantiating your TokenboundClient: :
+
+**V2 with custom `implementationAddress`:**
+
+```ts copy
+import { TokenboundClient, TBVersion } from "@tokenbound/sdk"
+const CUSTOM_V2_ACCOUNT_IMPLEMENTATION = "0x9fff..."
+const tokenboundClient = new TokenboundClient({
+  walletClient,
+  chainId: 1,
+  implementationAddress: CUSTOM_V2_ACCOUNT_IMPLEMENTATION,
+  version: TBVersion.V2,
+})
+```
+
+### createAccount return type
+
+Previous iterations of the `createAccount` method returned an `0x${string}` with the created account address. In V3, createAccount returns an object containing both the created account address and the hash of the transaction. This will make debugging and testing easier, and should help developers handle UI updates relating to the transaction more easily.
+
+###### Previous:
+
+```ts copy
+const createdAccount = await tokenboundClient.createAccount({...})
+```
+
+###### Now:
+
+```ts copy
+const { account, txHash } = await tokenboundClient.createAccount({...})
+```
+
+### createAccount + getAccount with customImplementation parameters
+
+Previously, we allowed for a custom `implementationAddress` and/or `registryAddress` to be specified directly on the `getAccount` and `createAccount` methods. These parameters have been removed. You can still specify each of these parameters when instantiating the TokenboundClient for the same effect.
+
+### ABI exports
+
+We're moving to versioned exports of the ABIs so that developers can differentiate them:
+
+```ts copy
+export {
+  erc6551AccountAbiV2,
+  erc6551RegistryAbiV2,
+  erc6551AccountAbiV3,
+  erc6551AccountProxyAbiV3,
+  erc6551RegistryAbiV3,
+}
+```

@@ -1,0 +1,249 @@
+import {Callout, Button} from "vocs/components"
+
+# Query TBA address for an NFT
+
+The Tokenbound SDK is compatible with both [viem](https://viem.sh/) and [Ethers](https://docs.ethers.org/v6/). viem is a core SDK dependency, so we recommend using viem except for legacy Ethers projects.
+
+<Callout type="info">
+If you're using one of the many Web3 starter kits, make sure that you're using a recent release of viem (>1.0), Ethers 5.7+, or 6 to avoid issues.
+</Callout>
+
+
+The following Tutorial uses <a href="https://wagmi.sh/cli/create-wagmi" target="_blank">`create-wagmi` ↗️</a> boilerplate
+
+![demo screenshot](https://i.imgur.com/z7a17B3.png)
+
+<Button href="https://tb-sdk-demo-create-wagmi.vercel.app/">Demo</Button>
+<Button href="https://github.com/anggxyz/tb-sdk-demo-create-wagmi">Source Code</Button>
+
+### Install dependencies
+  ```
+    $ npm init wagmi
+  ```
+  This is the config used for the demo:
+
+  ![](https://i.imgur.com/Ubustim.png)
+
+  next, we install the `tokenbound/sdk`
+  ```
+  $ npm install @tokenbound/sdk
+  ```
+### Create a Form to input NFT contract address and token Id
+We want a component that allows entering NFT contract address and Token Id. And another component that allows viewing the associated Tokenbound account
+
+![](https://i.imgur.com/znpEUZw.png)
+
+The `src/app/page.tsx` is pre-populated with some helpful components that wagmi provides with the boilerplate. We can remove them for now. Feel free to remove everything from that file and add this:
+
+```typescript
+// src/app/page.tsx
+
+export default function Page() {
+  return (
+    <div>
+      <h1>Check tokenbound account for an NFT</h1>
+    </div>
+  )
+}
+```
+
+We create a new component inside `src/components` called `tba.tsx`
+```typescript
+'use client'
+
+// src/components/tba.tsx
+
+...
+...
+
+export default function TBA() {
+  return (
+    <div></div>
+  )
+}
+```
+
+We can now import this component in our home page inside `src/app/page.tsx`:
+```typescript
+// src/app/page.tsx
+
+import TBA from '../components/tba'
+
+export default function Page() {
+  return (
+    <div>
+      <h1>Check tokenbound account for an NFT</h1>
+
+      <TBA/>
+
+    </div>
+  )
+}
+```
+
+we first define global functions and objects in `tba.tsx` component:
+```typescript
+// src/components/tba.tsx
+
+import { useWalletClient } from 'wagmi'
+import { mainnet } from 'viem/chains'
+import { TokenboundClient } from '@tokenbound/sdk'
+import { type TBAccountParams } from "@tokenbound/sdk/dist/src/TokenboundClient";
+
+const DEFAULT_ACCOUNT: TBAccountParams = {
+  tokenContract: "0xe7134a029cd2fd55f678d6809e64d0b6a0caddcb",
+  tokenId: "9"
+}
+```
+
+then state variables and helper functions:
+
+```typescript
+// src/components/tba.tsx
+
+// ...
+// ...
+export default function TBA() {
+  const { data: walletClient, isError, isLoading } = useWalletClient();
+  const tokenboundClient = new TokenboundClient({ walletClient, chainId: CHAIN_ID })
+
+  const [retrievedAccount, setRetrievedAccount] = useState<string>("");
+  const [TBAccount, setTBAccount] = useState<TBAccountParams>(DEFAULT_ACCOUNT)
+
+  const getAccount = () => {
+    try {
+      const account = tokenboundClient.getAccount(TBAccount)
+      setRetrievedAccount(account);
+    } catch(err) {
+      // ...
+    }
+  }
+
+  const resetAccount = () => {
+    setRetrievedAccount("");
+    setTBAccount(DEFAULT_ACCOUNT);
+    // ...
+  }
+
+// ...
+// ...
+// ...
+// ...
+
+}
+```
+
+Inside this component, we return with a basic structure of the component, before adding a form in the next step:
+```typescript
+// src/components/tba.tsx
+
+
+export default function TBA() {
+
+// ...
+// ...
+// ...
+
+
+return (
+  <main className="...">
+    <div className="...">
+      <h1 className="...">
+        Check <span className="...">tokenbound account</span> for any NFT
+      </h1>
+      <div className="...">
+
+
+      {/* components go here */}
+
+      </div>
+    </div>
+  </main>
+  )
+}
+```
+
+and finally we create a form like:
+```typescript
+// src/components/tba.tsx
+
+export default function TBA() {
+// ...
+// ...
+// ...
+
+return (
+  <>
+// ...
+// ...
+// ...
+
+    <form onSubmit={getAccount()}
+      className="grid md:grid-cols-2 grid-cols-1 gap-4">
+
+      <label htmlFor="nftContract">
+        NFT Contract
+      </label>
+      <input
+          type="text"
+          className="h-fit p-2 rounded-lg bg-slate-300 text-black"
+          id="nftContract"
+          onChange={(event) => setTBAccount({
+                    ...TBAccount,
+                    tokenContract: event.target.value as TBAccountParams["tokenContract"]
+          })}
+          value={TBAccount.tokenContract}
+      />
+
+      <label htmlFor="nftTokenId">
+        Token ID
+      </label>
+
+
+      <input
+          type="text"
+          className="h-fit p-2 rounded-lg bg-slate-300 text-black"
+          id="nftTokenId"
+          onChange={(event) => setTBAccount({
+                  ...TBAccount,
+                  tokenId: event.target.value
+          })}
+          value={TBAccount.tokenId}
+      />
+
+      <button
+          type="submit"
+          className="h-fit p-2 bg-slate-100 rounded-lg col-span-2 text-black self-end">
+        Check
+      </button>
+
+    </form>
+// ...
+// ...
+// ...
+  </>
+  )
+}
+```
+
+### Display data
+Next, we display the data we stored in state variables in the previous step inside our TBA component
+![](https://i.imgur.com/wCExmiv.png)
+
+we now just display all the state variables we defined
+```typescript
+// src/components/tba.tsx
+
+<div className="...">
+  <pre className="w-full overflow-x-auto">
+    {JSON.stringify({...TBAccount, retrievedAccount}, null, 2)}
+  </pre>
+
+  <button type="button" className="p-2 bg-slate-100 rounded-lg text-black" onClick={resetAccount}>
+    Reset
+  </button>
+
+</div>
+```
+### That's it! 🎉
+View the codebase for this example app [here](https://github.com/anggxyz/tb-sdk-demo-create-wagmi).

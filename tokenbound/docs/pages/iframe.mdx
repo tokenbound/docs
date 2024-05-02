@@ -1,0 +1,145 @@
+import { Callout, Steps, Step } from "vocs/components";
+import React from "react";
+
+import { useState } from "react";
+
+export function Iframe({ src }) {
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: "75%",
+        paddingBottom: "75%",
+      }}
+    >
+      <iframe
+        src={src}
+        title="Square Iframe"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          border: "none",
+        }}
+        allow="clipboard-read; clipboard-write"
+      ></iframe>
+    </div>
+  );
+}
+
+# Tokenbound iFrame
+
+By using an `animation_url` developers may embed a web app as the media for NFT on OpenSea, and some other platforms. This allows users to view detailed information about the tokenbound account (TBA) of NFTs directly within the marketplace interface.
+
+This basic iframe implementation lets users explore their NFT's tokenbound accounts and view information such as:
+
+- Contents of the NFT's tokenbound account: ERC-721, ERC-1155, ether and ERC-20 tokens
+
+- Whether or not any ERC-721, or ERC-1155 tokens have global or token level approvals. This information provides context for users who are looking to buy an NFT and the contents within it's TBA, since tokens with pending approvals have the potential be transferred before the transaction for the parent NFT is finalized.
+- Whether the status of the TBA is `locked` or `unlocked`. A `locked` state allows users to confidently purchase an NFT, knowing that none of the contents of the TBA will be transferred for the specified time period.
+
+<Callout type="info">
+  **Tokenbound** currently provides two ways you can easily integrate iframes
+  into your project `URL` and `Custom`.
+</Callout>
+<br />
+<Iframe
+  src={
+    "https://iframe-tokenbound.vercel.app/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36/1/1"
+  }
+/>
+### URL Implementation
+
+The `URL` method is recommended for NFT projects using static images for their artwork, and/or existing projects and wish to show their NFT's Tokenbound account.
+This method requires updating the `animation_url` of your NFT's metadata to match this pattern:
+
+```json
+{
+  "animation_url": "https://iframe-tokenbound.vercel.app/<contractAddress>/<tokenId>/<chainId>"
+}
+```
+
+`contractAddress`: the contract address of the NFT collection you wish to display <br/>
+`tokenId`: the token ID of the individual NFT to be rendered in the iframe <br />
+`chainId`: the chain ID of where your NFT collection resides. The following tables shows currently supported chains.
+
+| Network          | Chain ID |
+| ---------------- | -------- |
+| Ethereum Mainnet | 1        |
+| Ethereum Goerli  | 5        |
+| Ethereum Sepolia | 11155111 |
+| Polygon Mainnet  | 137      |
+| Polygon Mumbai   | 80001    |
+| Optimism Mainnet | 420      |
+
+For example, using `token ID 1` from the `Sapienz` collection on mainnet `1`: [https://iframe-tokenbound.vercel.app/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36/1/1](https://iframe-tokenbound.vercel.app/0x26727ed4f5ba61d3772d1575bca011ae3aef5d36/1/1)
+
+<Callout emoji="✍🏽">
+  The old url without the chain ID will still be supported. However to receive
+  new features and UI updates, please point the `animation_url` to one of the
+  chain IDs listed above.
+</Callout>
+
+This iframe implementation relies on Alchemy's indexer to render the NFT's media. If your project uses a custom API to render the NFT's media, use the custom implementation below.
+
+### Custom Implementation
+
+<Steps>
+  <Step title="Fork and clone the iframe repo">
+    ```bash copy
+    git clone git@github.com:githubUser/iframe.git
+    ```
+  </Step>
+  <Step title="Setup environment variables">
+    ```bash copy
+    cat .env.example > .env.local
+    ```
+  </Step>
+  <Step title="Create an Alchemy account and API key">
+    Navigate to https://dashboard.alchemy.com/ and create a new app
+
+    Update your environment variables with your Alchemy
+
+    ```
+    NEXT_PUBLIC_ALCHEMY_KEY="<alchemy_key>"
+    NEXT_PUBLIC_PROVIDER_ENDPOINT="https://..."
+    ```
+  </Step>
+  <Step title="Create a Graph studio account and API key">
+    Navigate to https://thegraph.com/studio/ and create an API key (used for checking token approvals)
+
+    You will need to fund your account with GRT tokens.
+
+    Update `NEXT_PUBLIC_GRAPH_API_KEY` with your sub graph credentials.
+
+    ```
+    NEXT_PUBLIC_GRAPH_API_KEY="<graph_api_key>"
+    ```
+  </Step>
+  <Step title="Use in your custom api endpoint to fetch your NFT's media">
+    The application expects the endpoint to be: `string | string[]`, where the string is a url link to your NFT's assets. It should
+    dynamically have a route for each tokenId.
+
+    For example the `NEXT_PUBLIC_NFT_ENDPOINT` env variable is `https://nft-api.com/nft`. The application will then take the tokenId from the URL and make a fetch to that endpoint: `https://nft-api.com/nft/<tokenId>`.
+
+    ```
+    ...
+    NEXT_PUBLIC_NFT_ENDPOINT="..."
+    ```
+  </Step>
+  <Step title="Host your application">
+  Host your application on a service provider of your choice and set your metadata server with that host.
+
+  ```json
+  {
+    "animation_url": "https://iframe-tokenbound.vercel.app/<contractAddress>/<tokenId>/<chainId>"
+  }
+  ```
+  </Step>
+</Steps>
+
+### Options
+
+Add the query param `?disableloading=true` to not have Tokenbound logo animation before the iframe starts.

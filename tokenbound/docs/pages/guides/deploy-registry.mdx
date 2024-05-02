@@ -1,0 +1,84 @@
+
+import {Callout, Steps, Step} from "vocs/components"
+
+# Deploy the ERC-6551 Registry
+
+<Callout type="info">
+  This guide covers the deployment of the ERC-6551 Registry contract for the
+  purpose of interacting with TBAs (Tokenbound Accounts) on a local node OR if
+  you want to enable TBAs for the first time on a new EVM chain. Otherwise, you
+  may use the existing canonical ERC-6551 Registry contract.
+</Callout>
+
+The ERC-6551 Registry contract has already been deployed across several EVM networks. A list of deployed addresses can be found [here](/contracts/deployments).
+
+<Steps>
+  <Step title="Install Foundry">
+    ```bash
+    $ curl -L https://foundry.paradigm.xyz | bash
+    $ foundryup
+    ```
+  </Step>
+  <Step title="Clone the Reference repository">
+    ```bash
+    $ git clone https://github.com/erc6551/reference.git
+    ```
+
+    <Callout type="danger">
+    Make sure you checkout on `v0.3.1` tag for the repository
+
+    This is ensures that the address of Registry contract is the same as on any other EVM compatible chain. The current address that’s deployed on all chains is: `0x000000006551c19487814612e58FE06813775758`
+
+    </Callout>
+
+    ```bash
+    $ git checkout tags/v0.3.1
+    ```
+
+    <Callout emoji="⚠️" type="warning">
+
+    If this address differs it would cause a tokenbound account associated with an NFT to have different addresses on different chains
+
+    </Callout>
+  </Step>
+
+  <Step title="Run the tests and build the contracts">
+    ```bash
+    $ forge test
+    $ forge build
+    ```
+  </Step>
+
+  <Step title="Compute the Registry address">
+    This is to make sure it matches with `0x000000006551c19487814612e58FE06813775758`
+
+    ```bash
+    $ forge script script/ComputeRegistryAddress.s.sol:ComputeRegistryAddress
+    ```
+
+    The output should be:
+
+    ```bash ❯ forge script script/ComputeRegistryAddress.s.sol:ComputeRegistryAddress
+    [⠒] Compiling... No files changed, compilation skipped Script ran successfully. Gas
+    used: 24925
+
+    == Logs ==
+    0x000000006551c19487814612e58FE06813775758
+    ```
+
+    <Callout type="info">
+      make sure the Address matches with
+      `0x000000006551c19487814612e58FE06813775758`
+    </Callout>
+  </Step>
+
+  <Step title="Deploy the Registry">
+    Before we can deploy we need to provide `MAINNET_PRIVATE_KEY` env variable - set this to your test account’s private key
+
+    ```bash
+    $ forge script --fork-url <RPC_URL> script/DeployRegistry.s.sol --broadcast
+    ```
+
+    Replace `<RPC_URL>` with your chain's RPC endpoint
+  </Step>
+</Steps>

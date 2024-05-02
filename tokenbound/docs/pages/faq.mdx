@@ -1,0 +1,53 @@
+# Frequently Asked Questions
+
+### What is a Token Bound Account (TBA)?
+
+A "Token Bound Account" is a smart contract account, controlled by an NFT. It can do everything a normal wallet can do and is compatible with every NFT you already own.
+
+### Why now for ERC-6551 and Token Bound Accounts?
+
+Hundreds of thousands of NFT projects have launched in the last few years, from CC0 projects to multi-billion dollar media/entertainment companies. NFTs have reached mainstream appeal over the last 2 years. However, ERC-721, the token standard that coined the term NFTs, has remained roughly the same since it was created 6 years ago. The standard didn’t/couldn’t anticipate all the potential use cases when it was conceived in 2017.
+
+One such use case is ownership from a token level. NFTs and most tokens are assets that are owned and controlled by a wallet, typically that is Metamask, Rainbow, Coinbase, Ledger, etc. but as NFTs have grown into full blown communities, the demand for utility and general usefulness has reached new heights. Projects with enough capital often organize IRL social gatherings that require huge amounts of capital and resources. Projects with less capital pursue on-chain game mechanics such as staking, farming, airdrops, voting, and purchasing.
+
+However most of these mechanics are often difficult to build and as a result each project has their own implementation that essentially does the same thing as the other but has more potential security vulnerabilities. The concept of ERC-6551 and Token Bound Accounts allow NFTs to have its own ethereum identity in the form of a smart contract wallet. ERC-6551 will allow for all NFT projects to add in important utilities to their tokens without heavy capital investment and effectively leveling up the entire NFT asset class together.
+
+### I’ve seen other projects where NFTs can own assets. How is ERC-6551 different?
+
+ERC-6551 focuses on ease of use and adoption. Unlike other proposals and projects, Token Bound works with no action needed by project owners, no wrapping contracts, and no change to the ERC-721 standard. Most importantly, every ERC-721 and ERC-1155 NFT you already own works with Token Bound Accounts — projects and creators don’t need to deploy a whole new contract to use Token Bound, and you can start using ERC-6551 immediately.
+
+### Why is ERC-6551 important? Why should I care?
+
+Digital collectibles/art are the future of creation. More than ever, people around the world are using technology to create digital goods such as NFTs. ERC-6551 is the most effective way to increase the surface area of interaction for NFTs. It was designed to be easily adopted by existing marketplaces, wallets, and dapps. It is permissionless and decentralized so that no single company owns your NFT’s wallet. When it comes to token provenance ERC-6551 allows your NFT to have an on-chain identity where history is created from the NFT itself rather than your wallet.
+
+### How do I know if my NFT has an account/wallet address?
+
+Every NFT already has an Address we can compute using ERC-6551 and Token Bound. You can view the tokens inside of your Token Bound Accounts on https://tokenbound.org/. As adoption grows we are pushing for further integration into wallet apps such as Metamask, Rainbow Wallet, Coinbase, and marketplaces like OpenSea, Zora, and blur. Our SDK tooling and documentation also make it easy for creators and developers to integrate this functionality right into their own websites and apps.
+
+### What can I put in my NFT’s token bound account?
+
+Absolutely anything you would put into your old wallet. ETH, USDC, ERC-20, ERC-721, ERC-1155, and any other tokens you would normally send to your Metamask, Ledger, etc.
+
+### How can I trust my NFT’s wallet?
+
+We take security seriously and we have already completed a preliminary audit with 0xMacro. We will be conducting an additional audit with Certik (with support from our contributing partner Manifold), and seeking additional coverage through Code4rena.
+
+### Can I nest my Token Bound NFTs inside of each other?
+
+Yes! Since every NFT is a Token Bound Account, there are no limits to how many tokens you may have nested in your NFTs, or how far down you go. If you want to put an NFT inside of an NFT inside of an NFT you can. When you transfer that NFT to someone else, everything inside automatically goes along with it. This opens up many new patterns of bundling NFTs together for trading, gaming, governance and more.
+
+### How do I use ERC-6551 for my project?
+
+The ERC-6551 reference implementation is open source and can be used by any project. Tokebound also provides open-source tooling that makes it much easier for dapps to integrate. If you'd like to learn more about how to integrate ERC-6551 into your project, please join the [working group](https://t.me/tokenbound)
+
+### What are some of the core use cases for ERC 6551?
+
+The possibilities are endless when it comes to Token Bound Accounts. However, some clear use cases are as such:
+
+- Inventory system for owning items, outfits, equipments
+- Community loyalty or reputation systems
+- Mint or curate baskets of assets (art, collectibles, defi)
+- Composable media structures (stems to songs, art layers to painting, digital textiles to garments)
+- New on-chain game mechanics
+- On-chain meme/derivative economies
+- NFTs as onboarding vehicles instead of wallets
