@@ -1,5 +1,4 @@
-import { Tab, Tabs, Callout, Steps, Cards, Card } from "nextra/components"
-import { BiCodeAlt } from "react-icons/bi";
+import {Callout, Button, Steps, Step} from "vocs/components"
 
 # Interact with your Tokenbound Account (TBA) on local blockchain using nodejs
 
@@ -20,222 +19,225 @@ Walkthrough with scripts:
 2. Transfer ETH from your wallet to the associated TBA of your NFT contract + token ID (a TBA is always associated with a (nft contract, token id) pair)
 3. Deploy the Tokenbound account for this NFT contract + token id
 4. Transfer ETH from the TBA to your wallet
-<br />
-<Card
-  icon={<BiCodeAlt style={{placeSelf: "center"}} />}
-  title="Codebase ↗️"
-  href="https://github.com/anggxyz/tb-deploy-demo"
-/>
-<br />
+
+<Button href="https://github.com/anggxyz/tb-deploy-demo">Source Code</Button>
 
 <Steps>
-### Setup
-Clone the repository
-```bash
-$ gh repo clone anggxyz/tb-deploy-demo
-```
-```bash
-$ cd tb-deploy-demo/contracts/erc6551-reference && forge build && cd ../test-nft && forge build && cd ../../
-```
-### Setup contracts on local node
-The following steps are only required if you’re setting everything up on a fresh blockchain (local anvil node in this case), feel free to skip this part if you’re using a [compatible](https://docs.tokenbound.org/contracts/deployments) chain.
-#### Spin up a local test node (anvil)
-```bash
-$ anvil
-```
-#### Deploy NFT contract
-```bash
-$ cd contracts/test-nft
-```
-#### Set an account’s private key in .env with key `PRIVATE_KEY` and RPC url with key `RPC_URL`
-```bash
-$ forge create NFT --rpc-url=$RPC_URL --private-key=$PRIVATE_KEY --constructor-args "test" "TEST"
-```
-The output should look something like
-```bash
-❯ ...
-[⠒] Compiling...
-[⠃] Compiling 5 files with 0.8.10
-[⠊] Solc 0.8.10 finished in 243.92ms
-Compiler run successful!
-Deployer: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
-Deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
-Transaction hash: 0x04ff2f73f02b130516afabd60a42be636cb8febf0d2a04481fc80c645d1aa306
-```
+  <Step title="Setup">
+    Clone the repository
+    ```bash
+    $ gh repo clone anggxyz/tb-deploy-demo
+    ```
+    ```bash
+    $ cd tb-deploy-demo/contracts/erc6551-reference && forge build && cd ../test-nft && forge build && cd ../../
+    ```
+  </Step>
+  <Step title="Spin up a local test node (anvil)">
+    ```bash
+    $ anvil
+    ```
+  </Step>
 
-#### Mint a token to an address you have the private key for
-Set own account address in .env with key `ACCOUNT_ADDRESS`
-```bash
-$ cast send --rpc-url=$RPC_URL --private-key=$PRIVATE_KEY CONTRACT_ADDRESS "mintTo(address)" $ACCOUNT_ADDRESS
-```
-#### Deploy the registry contract
-```bash
-$ cd ../erc6551-reference
-```
-```bash
-$ cast rpc anvil_setCode 0x4e59b44847b379578588920ca78fbf26c0b4956c 0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf3
-```
-make sure you have RPC url set in the .env with key `RPC_URL`
-```bash
-forge script --fork-url=$RPC_URL script/DeployRegistry.s.sol
-```
-<Callout emoji="⚠️" type="warning">
-Make sure the output of the Address matches with `0x000000006551c19487814612e58FE06813775758`
-</Callout>
+  <Step title="Deploy NFT contract">
+    ```bash
+    $ cd contracts/test-nft
+    ```
+    Set an account’s private key in .env with key `PRIVATE_KEY` and RPC url with key `RPC_URL`
 
-#### Deploy an Account implementation contract
-```bash
-$ forge create src/examples/simple/SimpleERC6551Account.sol:SimpleERC6551Account --rpc-url=$RPC_URL --private-key=$PRIVATE_KEY
-```
-### Setup tokenbound client
-We’ll be storing all the constants in a file called `constants.ts`
-```typescript
-// constants.ts
+    ```bash
+    $ forge create NFT --rpc-url=$RPC_URL --private-key=$PRIVATE_KEY --constructor-args "test" "TEST"
+    ```
+    The output should look something like
+    ```bash
+    ❯ ...
+    [⠒] Compiling...
+    [⠃] Compiling 5 files with 0.8.10
+    [⠊] Solc 0.8.10 finished in 243.92ms
+    Compiler run successful!
+    Deployer: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+    Deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+    Transaction hash: 0x04ff2f73f02b130516afabd60a42be636cb8febf0d2a04481fc80c645d1aa306
+    ```
+  </Step>
+
+  <Step title="Mint an NFT">
+    Set own account address in .env with key `ACCOUNT_ADDRESS`
+    ```bash
+    $ cast send --rpc-url=$RPC_URL --private-key=$PRIVATE_KEY CONTRACT_ADDRESS "mintTo(address)" $ACCOUNT_ADDRESS
+    ```
+  </Step>
 
 
-export const CONSTANTS = {
-  "NFT_CONTRACT": NFT_CONTRACT_ADDRESS,
-  "NFT_ID": "1",
-  "CHAIN_ID": 31337,
-  "RPC":"http://127.0.0.1:8545",
-  "ACCOUNT_IMPLEMENTATION": ACCOUNT_IMPLEMENTATION_CONTRACT /** (remove this key if using an EVM compatible chain, this key is only required for local/fresh chain)  **/
-}
-```
+  <Step title="Deploy the Registry contract">
+    ```bash
+    $ cd ../erc6551-reference
+    ```
+    ```bash
+    $ cast rpc anvil_setCode 0x4e59b44847b379578588920ca78fbf26c0b4956c 0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe03601600081602082378035828234f58015156039578182fd5b8082525050506014600cf3
+    ```
+    make sure you have RPC url set in the .env with key `RPC_URL`
+    ```bash
+    forge script --fork-url=$RPC_URL script/DeployRegistry.s.sol
+    ```
+    <Callout type="warning">
+    Make sure the output of the Address matches with `0x000000006551c19487814612e58FE06813775758`
+    </Callout>
+  </Step>
 
-Create a file called `client.ts` and initialise and export `tokenboundClient` and `tokenboundAccount`
-
-```typescript
-// client.ts
-
-
-import { TokenboundClient } from "@tokenbound/sdk";
-import { JsonRpcProvider, Wallet, formatEther } from "ethers";
-import { CONSTANTS } from "./constants"
-import { TBAccountParams } from "@tokenbound/sdk/dist/src/TokenboundClient";
-
-const { CHAIN_ID, NFT_CONTRACT, NFT_ID, RPC, ACCOUNT_IMPLEMENTATION } = CONSTANTS;
-
-export const provider = new JsonRpcProvider(RPC);
+  <Step title="Setup tokenbound client">
+    We’ll be storing all the constants in a file called `constants.ts`
+    ```typescript
+    // constants.ts
 
 
-if (!process.env.TEST_ACCOUNT) {
-  console.error ("TEST_ACCOUNT private key undefined in .env");
-  process.exit();
-}
+    export const CONSTANTS = {
+      "NFT_CONTRACT": NFT_CONTRACT_ADDRESS,
+      "NFT_ID": "1",
+      "CHAIN_ID": 31337,
+      "RPC":"http://127.0.0.1:8545",
+      "ACCOUNT_IMPLEMENTATION": ACCOUNT_IMPLEMENTATION_CONTRACT /** (remove this key if using an EVM compatible chain, this key is only required for local/fresh chain)  **/
+    }
+    ```
+
+    Create a file called `client.ts` and initialise and export `tokenboundClient` and `tokenboundAccount`
+
+    ```typescript
+    // client.ts
 
 
-export const wallet = new Wallet(process.env.TEST_ACCOUNT, provider);
+    import { TokenboundClient } from "@tokenbound/sdk";
+    import { JsonRpcProvider, Wallet, formatEther } from "ethers";
+    import { CONSTANTS } from "./constants"
+    import { TBAccountParams } from "@tokenbound/sdk/dist/src/TokenboundClient";
+
+    const { CHAIN_ID, NFT_CONTRACT, NFT_ID, RPC, ACCOUNT_IMPLEMENTATION } = CONSTANTS;
+
+    export const provider = new JsonRpcProvider(RPC);
 
 
-const tokenboundClient = new TokenboundClient({
-  signer: wallet,
-  chainId: CHAIN_ID,
-  implementationAddress: ACCOUNT_IMPLEMENTATION as `0x${string}`
-});
-
-export const tokenBoundAccount = tokenboundClient.getAccount({
-  tokenContract: NFT_CONTRACT as TBAccountParams["tokenContract"],
-  tokenId: NFT_ID,
-});
-
-// util function to display balance
-const displayBalance = async (address: string) => {
-  const balance = await provider.getBalance(address);
-  console.log(`balance of ${address}: ${formatEther(balance)}`)
-}
-
-export default tokenboundClient;
-```
-### Transfer ETH from your wallet to the associated TBA
-Transfer ETH from your wallet to the associated TBA of your NFT contract + token ID (a TBA is always associated with a (nft contract, token id) pair)
-
-We create a new script named 1-transfer.ts, this would transfer funds from wallet → TBA
-
-```typescript
-// 1-transfer.ts
+    if (!process.env.TEST_ACCOUNT) {
+      console.error ("TEST_ACCOUNT private key undefined in .env");
+      process.exit();
+    }
 
 
-import { formatEther, parseEther } from "ethers";
-import { wallet, provider, tokenBoundAccount, displayBalance } from "./client";
+    export const wallet = new Wallet(process.env.TEST_ACCOUNT, provider);
 
-// transfer eth from Wallet -> TBA
 
-(async () => {
-  console.log(`sender:`, wallet.address);
-  await displayBalance(wallet.address);
+    const tokenboundClient = new TokenboundClient({
+      signer: wallet,
+      chainId: CHAIN_ID,
+      implementationAddress: ACCOUNT_IMPLEMENTATION as `0x${string}`
+    });
 
-  const amount = parseEther("1");
-  console.log(`sending ${formatEther(amount)} ETH from ${wallet.address} to ${tokenBoundAccount}`);
+    export const tokenBoundAccount = tokenboundClient.getAccount({
+      tokenContract: NFT_CONTRACT as TBAccountParams["tokenContract"],
+      tokenId: NFT_ID,
+    });
 
-  await wallet.sendTransaction({
-    to: tokenBoundAccount,
-    value: amount
-  })
-  await displayBalance(wallet.address);
-  await displayBalance(tokenBoundAccount);
-})()
-```
-<Callout emoji="👉" type="info">
-Before we can access the TBA to transfer funds back, we need to deploy the TBA on-chain
-</Callout>
+    // util function to display balance
+    const displayBalance = async (address: string) => {
+      const balance = await provider.getBalance(address);
+      console.log(`balance of ${address}: ${formatEther(balance)}`)
+    }
 
-### Deploy the Tokenbound account for this NFT contract + token id
-Before we can interact with the TBA to transfer funds to and from the account, we would need to deploy the account on the deterministic address that was retrieved in the first step when we executed the function getAccount from the SDK
+    export default tokenboundClient;
+    ```
+  </Step>
 
-To deploy the account, we create a new script named 2-deploy.ts with the following code:
+  <Step title="Transfer ETH from your wallet to the associated TBA">
+    Transfer ETH from your wallet to the associated TBA of your NFT contract + token ID (a TBA is always associated with a (nft contract, token id) pair)
 
-```typescript
-// 2-deploy.ts
+    We create a new script named 1-transfer.ts, this would transfer funds from wallet → TBA
 
-import { CONSTANTS } from "./constants"
-import { TBAccountParams } from "@tokenbound/sdk/dist/src/TokenboundClient";
-const { NFT_CONTRACT, NFT_ID } = CONSTANTS;
-import client, {tokenBoundAccount} from "./client";
+    ```typescript
+    // 1-transfer.ts
 
-(async () => {
-  console.log(`Tokenbound Address ${tokenBoundAccount} for NFT: ${NFT_CONTRACT} and NFT ID: ${NFT_ID}`);
 
-  console.log(`deploying account...`);
+    import { formatEther, parseEther } from "ethers";
+    import { wallet, provider, tokenBoundAccount, displayBalance } from "./client";
 
-  const account = await client.createAccount({
-    tokenContract: NFT_CONTRACT as TBAccountParams["tokenContract"],
-    tokenId: NFT_ID,
-  });
+    // transfer eth from Wallet -> TBA
 
-  console.log(account);
-})()
-```
+    (async () => {
+      console.log(`sender:`, wallet.address);
+      await displayBalance(wallet.address);
 
-### Transfer ETH from the TBA to your wallet
-Now that the account is deployed we can transfer ETH from the TBA back to the wallet. Creating a new script called `3-transfer.ts`
-```typescript
-// 3-transfer.ts
+      const amount = parseEther("1");
+      console.log(`sending ${formatEther(amount)} ETH from ${wallet.address} to ${tokenBoundAccount}`);
 
-import { formatEther, parseEther } from "ethers";
-import { TBAccountParams } from "@tokenbound/sdk/dist/src/TokenboundClient";
-import client, {wallet, provider, tokenBoundAccount, displayBalance} from "./client";
+      await wallet.sendTransaction({
+        to: tokenBoundAccount,
+        value: amount
+      })
+      await displayBalance(wallet.address);
+      await displayBalance(tokenBoundAccount);
+    })()
+    ```
+    <Callout type="info">
+    Before we can access the TBA to transfer funds back, we need to deploy the TBA on-chain
+    </Callout>
+  </Step>
 
-// transfer eth from B -> A
-(async () => {
-  console.log(`wallet: ${wallet.address}`);
-  await displayBalance(wallet.address);
-  console.log(`TBA address: ${tokenBoundAccount}`)
-  displayBalance(tokenBoundAccount)
+  <Step title="Deploy the Tokenbound account for this NFT contract + token id">
+    Before we can interact with the TBA to transfer funds to and from the account, we would need to deploy the account on the deterministic address that was retrieved in the first step when we executed the function getAccount from the SDK
 
-  const amount = parseEther("1");
-  console.log(`sending ${formatEther(amount)} ETH from ${tokenBoundAccount} to ${wallet.address}`);
+    To deploy the account, we create a new script named 2-deploy.ts with the following code:
 
-  const executedCall = await client.executeCall({
-    account: tokenBoundAccount,
-    to: wallet.address  as TBAccountParams["tokenContract"],
-    value: amount,
-    data: "",
-  });
-  console.log("\n---\n",executedCall,"\n---\n");
+    ```typescript
+    // 2-deploy.ts
 
-  await provider.waitForTransaction(executedCall);
-  await displayBalance(wallet.address);
-  await displayBalance(tokenBoundAccount);
-})()
-```
+    import { CONSTANTS } from "./constants"
+    import { TBAccountParams } from "@tokenbound/sdk/dist/src/TokenboundClient";
+    const { NFT_CONTRACT, NFT_ID } = CONSTANTS;
+    import client, {tokenBoundAccount} from "./client";
+
+    (async () => {
+      console.log(`Tokenbound Address ${tokenBoundAccount} for NFT: ${NFT_CONTRACT} and NFT ID: ${NFT_ID}`);
+
+      console.log(`deploying account...`);
+
+      const account = await client.createAccount({
+        tokenContract: NFT_CONTRACT as TBAccountParams["tokenContract"],
+        tokenId: NFT_ID,
+      });
+
+      console.log(account);
+    })()
+    ```
+  </Step>
+
+  <Step title="Transfer ETH from the TBA to your wallet">
+    Now that the account is deployed we can transfer ETH from the TBA back to the wallet. Creating a new script called `3-transfer.ts`
+    ```typescript
+    // 3-transfer.ts
+
+    import { formatEther, parseEther } from "ethers";
+    import { TBAccountParams } from "@tokenbound/sdk/dist/src/TokenboundClient";
+    import client, {wallet, provider, tokenBoundAccount, displayBalance} from "./client";
+
+    // transfer eth from B -> A
+    (async () => {
+      console.log(`wallet: ${wallet.address}`);
+      await displayBalance(wallet.address);
+      console.log(`TBA address: ${tokenBoundAccount}`)
+      displayBalance(tokenBoundAccount)
+
+      const amount = parseEther("1");
+      console.log(`sending ${formatEther(amount)} ETH from ${tokenBoundAccount} to ${wallet.address}`);
+
+      const executedCall = await client.executeCall({
+        account: tokenBoundAccount,
+        to: wallet.address  as TBAccountParams["tokenContract"],
+        value: amount,
+        data: "",
+      });
+      console.log("\n---\n",executedCall,"\n---\n");
+
+      await provider.waitForTransaction(executedCall);
+      await displayBalance(wallet.address);
+      await displayBalance(tokenBoundAccount);
+    })()
+    ```
+  </Step>
 </Steps>

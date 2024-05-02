@@ -48,7 +48,7 @@ export default defineConfig({
       items: [
         {
           text: "What is Tokenbound?",
-          link: "/what-is-tokenbound",
+          link: "/intro",
         },
         {
           text: "FAQ",
@@ -107,8 +107,12 @@ export default defineConfig({
           link: "/guides/read-a-tba",
         },
         {
-          text: "Connect to dapps as your NFT",
+          text: "Connect to dapps as your TBA",
           link: "/guides/connect-with-nft",
+        },
+        {
+          text: "Execute TBA transactions using SDK",
+          link: "/guides/interact-with-tba",
         },
         {
           text: "Deploy a custom account implementation",
