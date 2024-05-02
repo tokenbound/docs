@@ -1,5 +1,4 @@
-import { Callout } from "nextra-theme-docs"
-import { Tab, Tabs } from "nextra-theme-docs"
+import { HomePage } from 'vocs/components'
 
 # Overview
 
@@ -7,15 +6,12 @@ The Tokenbound SDK currently supports projects using Ethers or Viem to interact 
 
 # Installation
 
+<HomePage.InstallPackage name="@tokenbound/sdk" type="install" />
+
 The Tokenbound SDK is compatible with both [viem](https://viem.sh/) and [Ethers](https://docs.ethers.org/v6/). viem is a core SDK dependency, so we recommend using viem except for legacy Ethers projects.
 
 Note: If making use of one of the many Web3 starter kits, please make sure that you're using a recent release of viem (>1.0), Ethers 5.7+, or 6 to avoid issues.
 
-<Tabs items={["pnpm", "yarn", "npm"]}>
-  <Tab>```pnpm install @tokenbound/sdk ```</Tab>
-  <Tab>```yarn add @tokenbound/sdk ```</Tab>
-  <Tab>```npm install @tokenbound/sdk ```</Tab>
-</Tabs>
 
 ## Example apps
 
@@ -26,11 +22,3 @@ To help you get started more quickly, we've assembled bare-bones [example apps u
 - [vite-wagmi-ethers6](https://github.com/tokenbound/sdk/tree/main/examples/vite-wagmi-ethers6)
 - [vite-wagmi-ethers-rainbowkit](https://github.com/tokenbound/sdk/tree/main/examples/vite-wagmi-ethers-rainbowkit)
 
----
-
-<Callout emoji="✍🏽">
-  **Tokenbound** is a suite of open source tools for building with
-  [ERC-6551](https://ethereum-magicians.org/t/erc-6551-non-fungible-token-bound-accounts/).
-  These docs are still a work in progress. In the meantime, feel free to join
-  the [working group](https://t.me/tokenbound) to learn more.
-</Callout>

@@ -1,0 +1,58 @@
+import {Callout, Steps, Step} from "vocs/components"
+
+# Deploy a custom account implementation
+
+ERC-6551 (the proposal that introduces a new standard to the Ethereum chain, that enables Tokenbound accounts) introduces a *new relationship,* **not** a new standard for ERC721 tokens and the token owners.
+
+The components include a Registry contract - specific to the chain and an account implementation contract - a common interface offered by Tokenbound that ensures the accounts are deployed to the same address across all chains. It is possible to use your own custom implementation contract as well and that is what this guide will walk you through 🚶‍♀️
+
+<Callout type="info">
+if you’re interested in how the deployment via Registry contract works, read here: https://eips.ethereum.org/EIPS/eip-6551#registry
+</Callout>
+
+![erc6551 diagram](https://i.imgur.com/alujCO4.png)
+
+<Steps>
+  <Step title="Setup">
+    Clone the reference repository
+    ```bash
+    $ gh repo clone erc6551/reference
+    ```
+    Build the contracts
+    ```bash
+    $ forge build
+    ```
+  </Step>
+  <Step title="Deploy">
+    set an account’s private key in .env with key `PRIVATE_KEY` and RPC url with key `RPC_URL`
+    ```bash
+    forge create src/examples/simple/SimpleERC6551Account.sol:SimpleERC6551Account --rpc-url=$RPC_URL --private-key=$PRIVATE_KEY
+    ```
+
+    The output should look something like:
+    ```bash
+    ❯ ...
+    [⠢] Compiling...
+    No files changed, compilation skipped
+    Deployer: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
+    Deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
+    Transaction hash: 0xb6c98880b4c92d2f5b2dc329f34b9d431e14a6a8648bb3a3f7dde2c454df4a79
+    ```
+  </Step>
+</Steps>
+
+
+Now whenever you initialise the SDK, you can override the default token implementation by specifying your implementation’s contract address instead:
+
+```typescript
+import { TokenboundClient } from "@tokenbound/sdk";
+
+export const provider = new JsonRpcProvider(RPC);
+export const wallet = new Wallet(process.env.TEST_ACCOUNT, provider);
+
+const tokenboundClient = new TokenboundClient({
+  signer: wallet,
+  chainId: 31337,
+  implementationAddress: ACCOUNT_IMPLEMENTATION as `0x${string}`
+});
+```

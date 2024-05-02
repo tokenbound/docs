@@ -1,4 +1,4 @@
-# API Reference
+# SDK Reference
 
 ## TokenboundClient
 
@@ -19,13 +19,10 @@ For instructions about using a **Custom Account Implementation** and/or a **Lega
 
 ### Standard configuration
 
-If you're using one of the [standard V2/V3 ERC-6551 contract deployments →](https://docs.tokenbound.org/contracts/deployments), you can simply pass the`chainId`. This will set `Chain` internally using imports from [`viem/chains`](https://viem.sh/docs/clients/chains.html).
-
-The ecosystem of EVM-compatible chains has exploded in recent years, so to keep the bundle size to a minimum, only standard chains are included in the SDK package. EVM-compatible chains that aren't in the list can be used by [passing a custom chain parameter →](#custom-chain).
+If you're using one of the [standard V2/V3 ERC-6551 contract deployments →](https://docs.tokenbound.org/contracts/deployments), you can simply pass the`chainId`. This will set `Chain` internally using imports from [`viem/chains`](https://viem.sh/docs/clients/chains.html). To keep the bundle size to a minimum, only standard chains are included in the SDK package.
 
 ```ts copy
-import { useAccount } from 'wagmi'
-import { WalletClient } from "viem"
+import { useAccount, WalletClient } from 'wagmi'
 import { TokenboundClient } from '@tokenbound/sdk'
 
 const { address } = useAccount()
@@ -110,7 +107,7 @@ See [Appending Calls To Account Creation](#appending-calls-to-account-creation) 
 
 ### createAccount
 
-Creates a tokenbound account for an NFT. The deterministic address is calculated using the `create2` opcode using the listed parameters along with chainId and implementation address. `createAccount` adds the account to the registry and initializes it for use. Prior to account creation, the address can already receive assets. Deploying the account allows the NFT's owner to interact with the account. 
+Creates a tokenbound account for an NFT. The deterministic address is calculated using the `create2` opcode using the listed parameters along with chainId and implementation address. `createAccount` adds the account to the registry and initializes it for use. Prior to account creation, the address can already receive assets. Deploying the account allows the NFT's owner to interact with the account.
 
 **Returns** an object containing the account address of the tokenbound account created and the hash of the transaction. If an account already exists, the existing account is returned.
 
@@ -359,7 +356,7 @@ const transferETH = await tokenboundClient.transferETH({
   recipientAddress: '<recipient_address>',
 })
 
-console.log(transferETH) //...
+console.log(transferERC20) //...
 ```
 
 | Parameter            | Description                             | Type   |
@@ -421,8 +418,8 @@ const segmentedBytecode = await tokenboundClient.deconstructBytecode({
 
 console.log(segmentedBytecode)
 ```
-
 | Parameter          | Description                     | Type   |
+
 | ------------------ | ------------------------------- | ------ |
 | **accountAddress** | The Tokenbound account address. | string |
 
@@ -465,7 +462,7 @@ const signedRawUint8Message = await tokenboundClient.signMessage({
   message: { raw: uint8ArrayMessage },
 })
 
-console.log(signedRawUint8Message)
+console.log(signedUint8Message)
 ```
 
 | Parameter   | Description               | Type                     |
@@ -570,7 +567,7 @@ const encodedClaimFunctionData = encodeFunctionData({
     claimConfig.quantity,
     claimConfig.currencyAddress,
     claimConfig.pricePerToken,
-    claimConfig.allowListProof, 
+    claimConfig.allowListProof,
     claimConfig.data,
   ],
 })

@@ -1,26 +1,17 @@
 {
-  "name": "docs",
-  "version": "0.1.0",
-  "private": true,
+  "name": "tokenbound",
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "clean": "rm -rf node_modules .next",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vocs dev",
+    "build": "vocs build",
+    "preview": "vocs preview"
   },
   "dependencies": {
-    "@types/node": "18.15.11",
-    "@types/react": "18.0.33",
-    "@types/react-dom": "18.0.11",
-    "eslint": "8.37.0",
-    "eslint-config-next": "13.2.4",
-    "next": "13.2.4",
-    "nextra": "^2.10.0",
-    "nextra-theme-docs": "^2.3.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-icons": "^4.10.1",
-    "typescript": "5.0.3"
+    "@types/react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "typescript": "latest",
+    "vocs": "latest"
   }
 }

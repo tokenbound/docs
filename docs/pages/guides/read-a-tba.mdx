@@ -1,35 +1,21 @@
-import { Tab, Tabs, Callout, Steps, Cards, Card } from "nextra/components"
-import {BsWindowFullscreen} from "react-icons/bs";
-import {BiCodeAlt} from "react-icons/bi";
-import { AiOutlineRight } from 'react-icons/ai';
-import Image from 'next/image'
+import {Callout, Button} from "vocs/components"
 
-# Read a Tokenbound Account associated with an NFT
+# Query TBA address for an NFT
 
 The Tokenbound SDK is compatible with both [viem](https://viem.sh/) and [Ethers](https://docs.ethers.org/v6/). viem is a core SDK dependency, so we recommend using viem except for legacy Ethers projects.
 
-<Callout emoji="👉" type="info">
+<Callout type="info">
 If you're using one of the many Web3 starter kits, make sure that you're using a recent release of viem (>1.0), Ethers 5.7+, or 6 to avoid issues.
 </Callout>
 
 
 The following Tutorial uses <a href="https://wagmi.sh/cli/create-wagmi" target="_blank">`create-wagmi` ↗️</a> boilerplate
-<br/>
-<Image src="https://i.imgur.com/z7a17B3.png" width="650" height="150" alt="demo screenshot" />
-<br/>
-<Cards>
-  <Card
-      icon={<BsWindowFullscreen style={{placeSelf: "center"}} />}
-      title="Demo ↗️"
-      href="https://tb-sdk-demo-create-wagmi.vercel.app/"
-    />
-  <Card
-    icon={<BiCodeAlt style={{placeSelf: "center"}} />}
-    title="Codebase ↗️"
-    href="https://github.com/anggxyz/tb-sdk-demo-create-wagmi"
-  />
-</Cards>
-<Steps>
+
+![demo screenshot](https://i.imgur.com/z7a17B3.png)
+
+<Button href="https://tb-sdk-demo-create-wagmi.vercel.app/">Demo</Button>
+<Button href="https://github.com/anggxyz/tb-sdk-demo-create-wagmi">Source Code</Button>
+
 ### Install dependencies
   ```
     $ npm init wagmi
@@ -261,4 +247,3 @@ we now just display all the state variables we defined
 ```
 ### That's it! 🎉
 View the codebase for this example app [here](https://github.com/anggxyz/tb-sdk-demo-create-wagmi).
-</Steps>
