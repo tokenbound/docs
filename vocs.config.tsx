@@ -19,7 +19,6 @@ export default defineConfig({
     dark: "/tokenbound-light.svg",
     light: "/tokenbound-dark.svg",
   },
-  title: "Tokenbound",
   editLink: {
     pattern: "https://github.com/tokenbound/docs/edit/main/docs/pages/:path",
     text: "Edit on GitHub",
